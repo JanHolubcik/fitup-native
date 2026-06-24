@@ -15,15 +15,21 @@ export default function TabsLayout(): JSX.Element {
       <Tabs.Screen
         name="index"
         options={{
-          title: "Home",
-          tabBarIcon: ({ color }) => <TabIcon name="home-outline" color={color} />,
+          href: null,
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="dashboard"
         options={{
-          title: "Explore",
-          tabBarIcon: ({ color }) => <TabIcon name="compass-outline" color={color} />,
+          title: "Dashboard",
+          tabBarIcon: ({ color }) => <TabIcon name="stats-chart-outline" color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="profile"
+        options={{
+          title: "Profile",
+          tabBarIcon: ({ color }) => <TabIcon name="person-outline" color={color} />,
         }}
       />
     </Tabs>
