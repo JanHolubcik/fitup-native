@@ -1,0 +1,11 @@
+{
+  "add": "Add record",
+  "dashboard": "Dashboard",
+  "profile": "Profile",
+  "signIn": "Sign in",
+  "signUp": "Sign up",
+  "logout": "Logout",
+  "close": "Close",
+  "findFood": "Find food",
+  "photoOrScan": "Photo or scan"
+}

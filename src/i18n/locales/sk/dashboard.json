@@ -1,0 +1,260 @@
+{
+  "tour": {
+    "timeTravel": {
+      "title": "Cestovanie v čase",
+      "description": "Prepínajte medzi dňami pre zobrazenie záznamov."
+    },
+    "calorieBudget": {
+      "title": "Kalorický rozpočet",
+      "description": "Tu môžete sledovať svoj denný príjem a zostávajúce kalórie."
+    },
+    "macroBreakdown": {
+      "title": "Rozpis makroživín",
+      "description": "Sledujte svoje makrá, aby ste sa uistili, že dosahujete svoje ciele."
+    },
+    "yourMeals": {
+      "title": "Vaše jedlá",
+      "description": "V tejto sekcii pridávajte svoj denný príjem"
+    },
+    "yourProgress": {
+      "title": "Váš pokrok",
+      "description": "Sledujte, ako sa vaša dôslednosť vypláca! Tento graf vizualizuje trendy vášho príjmu."
+    },
+    "yourProfile": {
+      "title": "Váš profil",
+      "description": "Tu si môžete zmeniť svoje biometrické údaje, aby sme vám mohli vypočítať denné makrá."
+    },
+    "manualSearch": {
+      "title": "Manuálne vyhľadávanie",
+      "description": "Vyhľadávajte v našej databáze pre vaše obľúbené jedlá a ingrediencie."
+    },
+    "smartScanning": {
+      "title": "Inteligentné skenovanie a AI",
+      "description": "Ste príliš unavení na písanie? Naskenujte čiarový kód produktu alebo jednoducho odfoťte svoj tanier a nechajte našu AI urobiť ťažkú prácu!"
+    },
+    "activity": {
+      "title": "Denné aktivity",
+      "description": "Zaznamenajte si tu svoju aktivitu - vyberte aktivitu, nastavte dĺžku trvania a my vypočítame spálené kalórie."
+    }
+  },
+  "searchPlaceholder": "Hľadať jedlo...",
+  "kcalRemaining": "{{amount}} Kcal zostáva",
+  "recordNotFound": "Ak si svoje jedlo nenašiel vyskúšaj jedlo naskanovať alebo pridať manuálne.",
+  "addManually": "Pridať manuálne",
+  "close": "Zavrieť",
+  "calorieCard": {
+    "kcalRemaining": "{{amount}} Kcal zostáva",
+    "noRecords": "Žiadne záznamy",
+    "kcalOver": "{{amount}} Kcal navyše"
+  },
+  "todayMacros": {
+    "kcal": "kcal",
+    "g": "g"
+  },
+  "accordion": {
+    "item": "položka",
+    "items": "položiek",
+    "loggedToday": "zapísaných",
+    "itemsLogged0": "0 položiek zapísaných",
+    "itemsLogged1": "1 položka zapísaná",
+    "itemsLogged234": "{{count}} položky zapísané",
+    "itemsLogged5plus": "{{count}} položiek zapísaných"
+  },
+  "dateSwitcher": {
+    "previousDay": "Predchádzajúci deň",
+    "nextDay": "Nasledujúci deň"
+  },
+  "takePictureModal": {
+    "photo": "Odfotiť",
+    "takePictureTitle": "Odfotiť jedlo",
+    "takePictureDesc": "Odfotografujte jedlo pre analýzu živín.",
+    "reviewDesc": "Skontrolujte nižšie uvedené odhadované nutričné hodnoty od AI.",
+    "addToIntake": "Pridať do denného príjmu",
+    "captureAndAnalyze": "Odfotiť a analyzovať",
+    "cancel": "Zrušiť",
+    "analyzing": "Analyzuje sa pomocou Gemini...",
+    "analysisResult": "Výsledok analýzy",
+    "takeAnother": "Odfotiť znova",
+    "macros": {
+      "calories": "Kalórie:",
+      "protein": "Bielkoviny:",
+      "carbs": "Sacharidy:",
+      "fat": "Tuky:",
+      "sugar": "Cukry:",
+      "fiber": "Vlákniny:",
+      "salt": "Soľ:"
+    }
+  },
+  "modalScanFood": {
+    "title": "Kamerový skener",
+    "subtitle": "Použite kameru telefónu na skenovanie produktu alebo analýzu pomocou AI",
+    "disclaimerTitle": "Upozornenie:",
+    "disclaimerText": "Makrá odhadnuté AI nemusia byť 100% presné. Pre presné sledovanie odvážte jedlo na váhe a údaje zadajte manuálne.",
+    "scanBarcodeBtn": "Skenovať čiarový kód",
+    "useAIBtn": "Použiť AI"
+  },
+  "modalBarcodeScan": {
+    "title": "Skenovať čiarový kód",
+    "subtitle": "Zarovnajte čiarový kód do rámu pre načítanie nutričných hodnôt.",
+    "detectedWait": "Zistili sme čiarový kód, počkajte kým sa načíta záznam.",
+    "autoFetch": "Automaticky načítame macrá. Ak sa produkt nenájde, môžete ho pridať manuálne.",
+    "chromeUsers": "Pre používateľov prehliadača Chrome:",
+    "chromeBug": "Skúste stlačiť tlačidlá priblíženia, ak máte problémy s detekciou.",
+    "cancelBtn": "Zrušiť skenovanie",
+    "addNewFood": "Pridať nové jedlo",
+    "notFoundPrompt": "Naskenovaný čiarový kód sa nenašiel. Chcete ho pridať manuálne?",
+    "cancel": "Zrušiť",
+    "yes": "Áno",
+    "cameraDenied": "Prístup ku kamere bol odmietnutý.",
+    "noCamera": "Na tomto zariadení sa nenašla žiadna kamera.",
+    "cameraInUse": "Kameru už používa iná aplikácia.",
+    "cameraUnsupported": "Tento prehliadač nepodporuje prístup ku kamere.",
+    "cameraError": "Pri prístupe ku kamere sa vyskytla chyba: "
+  },
+  "timeOfDay": {
+    "breakfast": "Raňajky",
+    "lunch": "Obed",
+    "dinner": "Večera"
+  },
+  "macros": {
+    "calories": "Kalórie",
+    "protein": "Bielkoviny",
+    "carbohydrates": "Sacharidy",
+    "fat": "Tuky",
+    "sugar": "Cukry",
+    "fiber": "Vláknina",
+    "salt": "Soľ"
+  },
+  "chart": {
+    "noDataYet": "Zatiaľ žiadne údaje",
+    "logThreeDays": "Zaznamenajte si aspoň 3 dni, aby ste videli graf.",
+    "dayAverage": "denný priemer",
+    "goal": "Cieľ",
+    "weeklyPeak": "Maximum",
+    "aboveLimit": "Nad limitom",
+    "withinLimit": "V limite",
+    "daysOverLimit": "Dni nad limitom",
+    "allWithinGoal": "Žiadny",
+    "daysExceeded": "Prekročené dni",
+    "daysNotLogged": "Chýbajúce dni",
+    "allDaysLogged": "Žiadne",
+    "dayMissing": "Chýbajúci",
+    "day234Missing": "Chýbajúce",
+    "daysMissing": "Chýbajúcich",
+    "intake": "príjem",
+    "daysTracked0": "0 dní zaznamenaných",
+    "daysTracked1": "1 deň zaznamenaný",
+    "daysTracked234": "{{count}} dni zaznamenané",
+    "daysTracked5plus": "{{count}} dní zaznamenaných",
+    "getInsights": "Získať prehľad",
+    "poweredByGemini": "chatbot Gemini",
+    "recommendedLimit": "Odporúčaný limit",
+    "generatingInsights": "Generujú sa prehľady...",
+    "macroSelection": "Výber makra"
+  },
+  "newFoodModal": {
+    "title": "Pridanie {{name}} do denného príjmu",
+    "subtitle": "Upravte celkovú hmotnosť pre prepočet živín",
+    "amountLabel": "Množstvo (gramy)",
+    "calories": "Kalórie",
+    "proteinShort": "Bielkoviny",
+    "carbsShort": "Sacharidy",
+    "fatShort": "Tuky",
+    "fiberShort": "Vlákniny",
+    "sugarShort": "Cukry",
+    "cancel": "Zrušiť",
+    "saveChanges": "Uložiť zmeny"
+  },
+  "addFood": {
+    "base": "Základ",
+    "proteinShort": "Biel",
+    "carbsShort": "Sach",
+    "fatShort": "Tuk",
+    "sugarShort": "Cuk",
+    "portion": "Porcia (g)",
+    "energy": "Energia"
+  },
+  "modalCreateFood": {
+    "title": "Pridať vlastné jedlo",
+    "subtitle": "Zadajte údaje o jedle na 100g pre vytvorenie vlastného záznamu",
+    "uploadImage": "Nahrať obrázok",
+    "toastPending": "Odosielanie požiadavky...",
+    "toastSuccess": "Nový záznam bol úspešne uložený!",
+    "toastError": "Pri ukladaní nového jedla sa vyskytla chyba.",
+    "toastBadValue": "Záznam nie je možné uložit, gramy by nemali byť menšie ako 1.",
+    "barcodeLabel": "Čiarový kód",
+    "barcodePlaceholder": "Číslo čiarového kódu",
+    "foodNameLabel": "Názov jedla",
+    "foodNamePlaceholder": "Zadajte názov jedla",
+    "caloriesLabel": "Kalórie na 100g",
+    "caloriesPlaceholder": "Zadajte počet kalórií na 100g",
+    "proteinLabel": "Bielkoviny (g)",
+    "proteinPlaceholder": "Bielkoviny",
+    "sugarLabel": "Cukor (g)",
+    "sugarPlaceholder": "Cukor",
+    "fiberLabel": "Vláknina (g)",
+    "fiberPlaceholder": "Vláknina",
+    "fatLabel": "Tuky (g)",
+    "fatPlaceholder": "Tuky",
+    "carbsLabel": "Sacharidy (g)",
+    "carbsPlaceholder": "Sacharidy",
+    "saltLabel": "Soľ (g)",
+    "saltPlaceholder": "Soľ",
+    "submitBtn": "Odoslať",
+    "cancelBtn": "Zrušiť"
+  },
+  "editFoodModal": {
+    "title": "Upraviť {{name}}",
+    "subtitle": "Upravte celkovú hmotnosť pre prepočet živín",
+    "amountLabel": "Množstvo (gramy)",
+    "calories": "Kalórie",
+    "proteinShort": "Bielkoviny",
+    "carbsShort": "Sacharidy",
+    "fatShort": "Tuky",
+    "fiberShort": "Vlákniny",
+    "sugarShort": "Cukry",
+    "cancel": "Zrušiť",
+    "saveChanges": "Uložiť zmeny"
+  },
+  "newActivityModal": {
+    "toastNoActivity": "Prosím, vyberte aktivitu",
+    "toastBadValue": "Zadajte platné trvanie",
+    "title": "Zaznamenať novú aktivitu",
+    "subtitle": "Vyberte aktivitu a trvanie pre výpočet spálených kalórií",
+    "categoryLabel": "Typ aktivity",
+    "categoryPlaceholder": "napr. Kardio, Sila...",
+    "activityLabel": "Konkrétna aktivita",
+    "activityPlaceholder": "napr. Beh, Cyklistika...",
+    "durationLabel": "Trvanie (minúty)",
+    "caloriesBurned": "Spálené kalórie",
+    "intensity": "Intenzita (MET)",
+    "cancel": "Zrušiť",
+    "saveChanges": "Uložiť aktivitu"
+  },
+  "editActivityModal": {
+    "title": "Upraviť aktivitu",
+    "subtitle": "Aktualizujte podrobnosti o vašej aktivite",
+    "saveChanges": "Aktualizovať aktivitu"
+  },
+  "activity": {
+    "dailyActivities": "Denné aktivity",
+    "categories": {
+      "Cardio": "Kardio",
+      "Strength": "Sila",
+      "Flexibility": "Flexibilita",
+      "Sports": "Šport",
+      "Recreation": "Rekreácia",
+      "General": "Všeobecné"
+    }
+  },
+  "toast": {
+    "pending": "Odosielam požiadavku...",
+    "success": "Jedlo bolo pridané!",
+    "error": "Pri aktualizácii vášho príjmu nastala chyba.",
+    "removed": "Jedlo bolo odstránené!",
+    "updated": "Jedlo bolo aktualizované!",
+    "activitySuccess": "Aktivita bola zaznamenaná!",
+    "activityError": "Pri zaznamenávaní aktivity nastala chyba.",
+    "activityRemoved": "Aktivita bola odstránená!"
+  }
+}

@@ -1,0 +1,261 @@
+{
+  "tour": {
+    "timeTravel": {
+      "title": "Time Travel",
+      "description": "Switch between days to view past logs."
+    },
+    "calorieBudget": {
+      "title": "Calorie Budget",
+      "description": "Keep an eye on your daily budget and remaining calories here."
+    },
+    "macroBreakdown": {
+      "title": "Macro Breakdown",
+      "description": "Track your macros to ensure you are hitting your specific goals."
+    },
+    "yourMeals": {
+      "title": "Your Meals",
+      "description": "In this section you can add your daily intake."
+    },
+    "yourProgress": {
+      "title": "Your Progress",
+      "description": "Watch your consistency pay off! This chart visualizes your intake trends over time."
+    },
+    "yourProfile": {
+      "title": "Your profile",
+      "description": "Here you can change your biometric, so we can calculate your daily macros."
+    },
+    "manualSearch": {
+      "title": "Manual Search",
+      "description": "Type here to quickly search our database for your favorite foods and ingredients."
+    },
+    "smartScanning": {
+      "title": "Smart Scanning & AI",
+      "description": "Too tired to type? Scan a product's barcode or just snap a photo of your plate, and let our AI do the heavy lifting!"
+    },
+    "activity": {
+      "title": "Daily Activities",
+      "description": "Log your workouts here - choose an activity, set the duration, and we'll calculate the calories burned for you."
+    }
+  },
+  "searchPlaceholder": "Search food...",
+  "close": "Close",
+  "recordNotFound": " If you didn't find your food, you can add it here or try scanning.",
+  "addManually": "Add manually",
+  "calorieCard": {
+    "kcalRemaining": "{{amount}} Kcal remaining",
+    "noRecords": "No records yet",
+    "kcalOver": "{{amount}} Kcal over limit"
+  },
+  "todayMacros": {
+    "kcal": "kcal",
+    "g": "g"
+  },
+  "accordion": {
+    "item": "item",
+    "items": "items",
+    "loggedToday": "logged today",
+    "itemsLogged0": "0 items logged",
+    "itemsLogged1": "1 item logged",
+    "itemsLogged234": "{{count}} items logged",
+    "itemsLogged5plus": "{{count}} items logged"
+  },
+  "dateSwitcher": {
+    "previousDay": "Previous day",
+    "nextDay": "Next day"
+  },
+  "takePictureModal": {
+    "photo": "Photo",
+    "takePictureTitle": "Take a Picture of Food",
+    "takePictureDesc": "Take a clear picture of your food to analyze its macros.",
+    "reviewDesc": "Review the AI-estimated nutritional values below.",
+    "addToIntake": "Add to Daily Intake",
+    "captureAndAnalyze": "Capture & Analyze",
+    "cancel": "Cancel",
+    "analyzing": "Analyzing with Gemini...",
+    "analysisResult": "Analysis Result",
+    "takeAnother": "Take Another",
+    "close": "Close",
+    "macros": {
+      "calories": "Calories:",
+      "protein": "Protein:",
+      "carbs": "Carbs:",
+      "fat": "Fat:",
+      "sugar": "Sugar:",
+      "fiber": "Fiber:",
+      "salt": "Salt:"
+    }
+  },
+  "modalScanFood": {
+    "title": "Camera scanner",
+    "subtitle": "Using phone camera to scan product or analyze with AI",
+    "disclaimerTitle": "Disclaimer:",
+    "disclaimerText": "AI-estimated macros may not be 100% accurate. For precise tracking, weigh your food with a scale and input the details manually.",
+    "scanBarcodeBtn": "Scan Barcode",
+    "useAIBtn": "Use AI"
+  },
+  "modalBarcodeScan": {
+    "title": "Scan Barcode",
+    "subtitle": "Align the barcode within the frame to fetch nutrition macros.",
+    "detectedWait": "We detected a barcode, please wait until your food is loaded.",
+    "autoFetch": "We'll automatically fetch the macros. If the product isn't found, you can add it manually.",
+    "chromeUsers": "For Chrome users:",
+    "chromeBug": "Try pressing the zoom buttons while scanning if you have trouble with detection. Chrome's built-in scanner can be buggy, but zooming usually helps.",
+    "cancelBtn": "Cancel Scanning",
+    "addNewFood": "Add new food",
+    "notFoundPrompt": "The barcode you scanned was not found. Would you like to add it manually?",
+    "cancel": "Cancel",
+    "yes": "Yes",
+    "cameraDenied": "Camera permission was denied.",
+    "noCamera": "No camera was found on this device.",
+    "cameraInUse": "Camera is already in use by another application.",
+    "cameraUnsupported": "This browser does not support camera access.",
+    "cameraError": "An error occurred while accessing the camera: "
+  },
+  "timeOfDay": {
+    "breakfast": "Breakfast",
+    "lunch": "Lunch",
+    "dinner": "Dinner"
+  },
+  "macros": {
+    "calories": "Calories",
+    "protein": "Protein",
+    "carbohydrates": "Carbs",
+    "fat": "Fat",
+    "sugar": "Sugar",
+    "fiber": "Fiber",
+    "salt": "Salt"
+  },
+  "chart": {
+    "noDataYet": "No Data Yet",
+    "logThreeDays": "Please log at least 3 days of meals to see the graph.",
+    "dayAverage": "day average",
+    "goal": "Goal",
+    "weeklyPeak": "Weekly peak",
+    "aboveLimit": "Above limit",
+    "withinLimit": "Within limit",
+    "daysOverLimit": "Days over limit",
+    "allWithinGoal": "All within goal",
+    "daysExceeded": "Days exceeded",
+    "daysNotLogged": "Days not logged",
+    "allDaysLogged": "All days logged",
+    "dayMissing": "Day missing",
+    "day234Missing": "Days missing",
+    "daysMissing": "Days missing",
+    "intake": "intake",
+    "daysTracked0": "0 days tracked",
+    "daysTracked1": "1 day tracked",
+    "daysTracked234": "{{count}} days tracked",
+    "daysTracked5plus": "{{count}} days tracked",
+    "getInsights": "Get insights",
+    "poweredByGemini": "powered by Gemini",
+    "recommendedLimit": "Recommended limit",
+    "generatingInsights": "Generating insights...",
+    "close": "Close",
+    "macroSelection": "Macro selection"
+  },
+  "newFoodModal": {
+    "title": "Adding {{name}} to daily intake",
+    "subtitle": "Adjust total weight to scale macros",
+    "amountLabel": "Amount (grams)",
+    "calories": "Calories",
+    "proteinShort": "Protein",
+    "carbsShort": "Carbohydrates",
+    "fatShort": "Fat",
+    "sugarShort": "Sugar",
+    "fiberShort": "Fiber",
+    "cancel": "Cancel",
+    "saveChanges": "Save Changes"
+  },
+  "addFood": {
+    "base": "Base",
+    "proteinShort": "Prot",
+    "carbsShort": "Carb",
+    "fatShort": "Fat",
+    "sugarShort": "Sug",
+    "portion": "Portion (g)",
+    "energy": "Energy"
+  },
+  "modalCreateFood": {
+    "title": "Add Custom Food",
+    "subtitle": "Enter food details per 100g to create custom record",
+    "uploadImage": "Upload image",
+    "toastPending": "Sending request...",
+    "toastSuccess": "New food was saved successfully!",
+    "toastError": "There was an error while trying to save new food.",
+    "toastBadValue": "Can't save your food record, grams shouldn't be lower than 1.",
+    "barcodeLabel": "Barcode",
+    "barcodePlaceholder": "Barcode number",
+    "foodNameLabel": "Food name",
+    "foodNamePlaceholder": "Enter food name",
+    "caloriesLabel": "Calories per 100g",
+    "caloriesPlaceholder": "Enter number of calories per 100g",
+    "proteinLabel": "Protein in g",
+    "proteinPlaceholder": "Protein",
+    "sugarLabel": "Sugar in g",
+    "sugarPlaceholder": "Sugar",
+    "fiberLabel": "Fiber in g",
+    "fiberPlaceholder": "Fiber",
+    "fatLabel": "Fat in g",
+    "fatPlaceholder": "Fat",
+    "carbsLabel": "Carbs in g",
+    "carbsPlaceholder": "Carbs",
+    "saltLabel": "Salt in g",
+    "saltPlaceholder": "Salt",
+    "submitBtn": "Submit",
+    "cancelBtn": "Cancel"
+  },
+  "editFoodModal": {
+    "title": "Edit {{name}}",
+    "subtitle": "Adjust total weight to scale macros",
+    "amountLabel": "Amount (grams)",
+    "calories": "Calories",
+    "proteinShort": "Protein",
+    "carbsShort": "Carbohydrates",
+    "fatShort": "Fat",
+    "sugarShort": "Sugar",
+    "fiberShort": "Fiber",
+    "cancel": "Cancel",
+    "saveChanges": "Save Changes"
+  },
+  "newActivityModal": {
+    "toastNoActivity": "Please select an activity",
+    "toastBadValue": "Please enter a valid duration",
+    "title": "Log New Activity",
+    "subtitle": "Select an activity and duration to calculate calories burned",
+    "categoryLabel": "Activity Type",
+    "categoryPlaceholder": "e.g., Cardio, Strength...",
+    "activityLabel": "Specific Activity",
+    "activityPlaceholder": "e.g., Running, Cycling...",
+    "durationLabel": "Duration (minutes)",
+    "caloriesBurned": "Calories Burned",
+    "intensity": "Intensity (MET)",
+    "cancel": "Cancel",
+    "saveChanges": "Save Activity"
+  },
+  "editActivityModal": {
+    "title": "Edit Activity",
+    "subtitle": "Update your activity details",
+    "saveChanges": "Update Activity"
+  },
+  "activity": {
+    "dailyActivities": "Daily Activities",
+    "categories": {
+      "Cardio": "Cardio",
+      "Strength": "Strength",
+      "Flexibility": "Flexibility",
+      "Sports": "Sports",
+      "Recreation": "Recreation",
+      "General": "General"
+    }
+  },
+  "toast": {
+    "pending": "Sending request...",
+    "success": "Food was added!",
+    "error": "There was an error updating your intake.",
+    "removed": "Food was removed!",
+    "updated": "Food was updated!",
+    "activitySuccess": "Activity was logged!",
+    "activityError": "Error while logging activity.",
+    "activityRemoved": "Activity was removed!"
+  }
+}

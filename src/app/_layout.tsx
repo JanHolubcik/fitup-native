@@ -5,6 +5,7 @@ import { HeroUINativeProvider } from "heroui-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 import "../global.css";
+import "../i18n/i18n";
 
 export default function RootLayout(): JSX.Element {
   return (
