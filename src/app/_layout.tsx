@@ -5,6 +5,7 @@ import { HeroUINativeProvider } from "heroui-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { ActivityIndicator, View } from "react-native";
 import { authClient } from "./lib/auth-client";
+import { useUniwind } from "uniwind";
 
 import "../global.css";
 import "../i18n/i18n";
@@ -46,11 +47,16 @@ function AuthProtectedLayout(): JSX.Element {
 }
 
 export default function RootLayout(): JSX.Element {
+  const { theme } = useUniwind();
+  const isDark = theme === "dark";
+
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <HeroUINativeProvider>
-        <AuthProtectedLayout />
-        <StatusBar style="auto" />
+        <View className={isDark ? "dark flex-grow flex-1 bg-background" : "flex-grow flex-1 bg-background"}>
+          <AuthProtectedLayout />
+          <StatusBar style={isDark ? "light" : "dark"} />
+        </View>
       </HeroUINativeProvider>
     </GestureHandlerRootView>
   );
