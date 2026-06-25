@@ -5,7 +5,7 @@
 [![HeroUI](https://img.shields.io/badge/HeroUI--Native-latest-orange?style=flat-square)](https://heroui.com/docs/native)
 [![Uniwind](https://img.shields.io/badge/Uniwind-Tailwind-38B2AC?style=flat-square)](https://docs.uniwind.dev)
 
-This is the mobile application version of the **Fitup Calorie & Physical Activity Tracker** project, ported from the original [Next.js web application](https://github.com/janho/Fitupjh). It is built using **Expo**, **React Native**, **HeroUI Native**, and **Tailwind CSS (via Uniwind)** with a bottom-tab layout.
+This is the mobile application version of the **Fitup Calorie & Physical Activity Tracker** project, ported from the original [Next.js web application](https://github.com/JanHolubcik/Fitupjh). It is built using **Expo**, **React Native**, **HeroUI Native**, and **Tailwind CSS (via Uniwind)** with a bottom-tab layout.
 
 ---
 
