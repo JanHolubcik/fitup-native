@@ -3,7 +3,7 @@ import { expoClient } from "@better-auth/expo/client";
 import * as SecureStore from "expo-secure-store";
 import Constants from "expo-constants";
 
-const getBaseURL = () => {
+export const getBaseURL = () => {
   if (__DEV__) {
     // Constants.expoConfig?.hostUri holds the host computer's IP address (e.g. 192.168.1.150:8081)
     const host = Constants.expoConfig?.hostUri?.split(":")[0];

@@ -31,7 +31,7 @@ export default function ProfileMainComponent(): React.JSX.Element {
       <View className="w-full max-w-lg mx-auto gap-6">
         <LanguageAndThemeCard />
 
-        {/* <AccountDetails user={user} /> */}
+        <AccountDetails user={user} />
         {/* Placeholder cards for components to be implemented next */}
         {/* <ChangePassword /> */}
         {/* <BiometricAndGoals user={user} /> */}

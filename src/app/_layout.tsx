@@ -14,7 +14,6 @@ function AuthProtectedLayout(): JSX.Element {
   const { data: session, isPending } = authClient.useSession();
   const segments = useSegments();
   const router = useRouter();
-
   useEffect(() => {
     if (isPending) return;
 
@@ -53,7 +52,11 @@ export default function RootLayout(): JSX.Element {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <HeroUINativeProvider>
-        <View className={isDark ? "dark flex-grow flex-1 bg-background" : "flex-grow flex-1 bg-background"}>
+        <View
+          className={
+            isDark ? "dark flex-grow flex-1 bg-background" : "flex-grow flex-1 bg-background"
+          }
+        >
           <AuthProtectedLayout />
           <StatusBar style={isDark ? "light" : "dark"} />
         </View>

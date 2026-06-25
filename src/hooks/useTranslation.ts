@@ -14,7 +14,7 @@ export function useTranslation(ns?: string | string[]) {
   }));
 
   return {
-    t: (key: string, options?: Record<string, unknown>): string => t(key, options) as string,
+    t: (key: string, options?: Record<string, string | number | boolean>): string => t(key, options) as string,
     locale: i18n.language,
     changeLanguage: (newLocale: string) => {
       i18n.changeLanguage(newLocale);
