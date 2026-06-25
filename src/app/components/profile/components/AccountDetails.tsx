@@ -14,8 +14,10 @@ import { Ionicons } from "@expo/vector-icons";
 import { useUniwind } from "uniwind";
 import { Formik } from "formik";
 import * as ImagePicker from "expo-image-picker";
+import { useMutation } from "@tanstack/react-query";
 import { useTranslation } from "../../../../hooks/useTranslation";
 import { authClient, getBaseURL } from "../../../lib/auth-client";
+import { createAuthenticatedXHR } from "../../../lib/api-client";
 import { CardUniversal } from "../../common/CardUniversal";
 
 interface User {
@@ -112,58 +114,47 @@ export function AccountDetails({ user }: AccountDetailsProps): React.JSX.Element
     ]);
   };
 
-  const uploadImage = async (uri: string): Promise<string> => {
-    return new Promise((resolve, reject) => {
-      const fileName = uri.split("/").pop() || "avatar.jpg";
-      const match = /\.(\w+)$/.exec(fileName);
-      const type = match ? `image/${match[1]}` : `image/jpeg`;
+  const uploadImageMutation = useMutation({
+    mutationFn: async (uri: string): Promise<string> => {
+      return new Promise((resolve, reject) => {
+        const fileName = uri.split("/").pop() || "avatar.jpg";
+        const match = /\.(\w+)$/.exec(fileName);
+        const type = match ? `image/${match[1]}` : `image/jpeg`;
 
-      const formData = new FormData() as RNFormData;
-      formData.append("file", {
-        uri,
-        name: fileName,
-        type,
+        const formData = new FormData() as RNFormData;
+        formData.append("file", {
+          uri,
+          name: fileName,
+          type,
+        });
+
+        const xhr = createAuthenticatedXHR("POST", `${getBaseURL()}/api/upload`);
+
+        xhr.send(formData);
+
+        xhr.onload = () => {
+          try {
+            const response = JSON.parse(xhr.responseText) as UploadResponse;
+            if (response && response.data && response.data.imageUrl) {
+              resolve(response.data.imageUrl);
+            } else if (response && response.imageUrl) {
+              resolve(response.imageUrl);
+            } else {
+              reject(
+                new Error(t("toast.uploadError") || "No image URL returned from upload server")
+              );
+            }
+          } catch (e) {
+            reject(e);
+          }
+        };
+
+        xhr.onerror = () => {
+          reject(new Error(t("toast.uploadError") || "Network request failed"));
+        };
       });
-
-      const xhr = new XMLHttpRequest();
-      xhr.open("POST", `${getBaseURL()}/api/upload`);
-
-      // Add auth token and cookies from authClient
-      try {
-        const cookie = authClient.getCookie();
-        if (cookie) {
-          xhr.setRequestHeader("cookie", cookie);
-          const tokenMatch = cookie.match(/session_token=([^;]+)/);
-          if (tokenMatch && tokenMatch[1]) {
-            xhr.setRequestHeader("Authorization", `Bearer ${tokenMatch[1]}`);
-          }
-        }
-      } catch (err) {
-        console.error("Error setting auth headers:", err);
-      }
-
-      xhr.send(formData);
-
-      xhr.onload = () => {
-        try {
-          const response = JSON.parse(xhr.responseText) as UploadResponse;
-          if (response && response.data && response.data.imageUrl) {
-            resolve(response.data.imageUrl);
-          } else if (response && response.imageUrl) {
-            resolve(response.imageUrl);
-          } else {
-            reject(new Error(t("toast.uploadError") || "No image URL returned from upload server"));
-          }
-        } catch (e) {
-          reject(e);
-        }
-      };
-
-      xhr.onerror = () => {
-        reject(new Error(t("toast.uploadError") || "Network request failed"));
-      };
-    });
-  };
+    },
+  });
 
   const handleAccountSubmit = async (values: { name: string; image: string }) => {
     try {
@@ -171,7 +162,7 @@ export function AccountDetails({ user }: AccountDetailsProps): React.JSX.Element
 
       if (localImageUri) {
         try {
-          finalImageUrl = await uploadImage(localImageUri);
+          finalImageUrl = await uploadImageMutation.mutateAsync(localImageUri);
         } catch (uploadErr) {
           const msg = uploadErr instanceof Error ? uploadErr.message : t("toast.uploadError");
           toast.show({ label: msg, variant: "danger" });
@@ -188,7 +179,9 @@ export function AccountDetails({ user }: AccountDetailsProps): React.JSX.Element
         toast.show({ label: error.message || t("toast.error"), variant: "danger" });
       } else {
         toast.show({ label: t("toast.success"), variant: "success" });
-        setLocalImageUri(null); // Clear preview state after successful upload
+
+        setLocalImageUri(finalImageUrl);
+        void authClient.getSession({ fetchOptions: { cache: "no-cache" } });
       }
     } catch (err) {
       const msg = err instanceof Error ? err.message : t("toast.error");
