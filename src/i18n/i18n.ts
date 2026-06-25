@@ -1,7 +1,6 @@
 import { getLocales } from "expo-localization";
 import { I18n } from "i18n-js";
 
-// Import English translations
 import commonEn from "./locales/en/common.json";
 import dashboardEn from "./locales/en/dashboard.json";
 import homeEn from "./locales/en/home.json";
@@ -11,7 +10,6 @@ import onboardingEn from "./locales/en/onboarding.json";
 import profileEn from "./locales/en/profile.json";
 import signupEn from "./locales/en/signup.json";
 
-// Import Slovak translations
 import commonSk from "./locales/sk/common.json";
 import dashboardSk from "./locales/sk/dashboard.json";
 import homeSk from "./locales/sk/home.json";
