@@ -11,6 +11,8 @@ This is the mobile application version of the **Fitup Calorie & Physical Activit
 
 ## Features
 
+TODO: Once they are implemented, they will be checked.
+
 - [ ] **Calorie & Macro Logging Dashboard**: Keep track of daily meals classified by category timeframe. Track total protein, carbs, fats, fiber, sugar, and salt against personalized daily targets.
 - [ ] **Gemini AI Integration**:
   - [ ] **AI Food Intake Analyzer**: Evaluates daily meals to praise healthy habits, issue warnings, and suggest healthier food alternatives (using structured markup).
