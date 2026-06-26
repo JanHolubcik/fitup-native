@@ -1,5 +1,6 @@
 import { createAuthClient } from "better-auth/react";
 import { expoClient } from "@better-auth/expo/client";
+import { inferAdditionalFields } from "better-auth/client/plugins";
 import * as SecureStore from "expo-secure-store";
 import Constants from "expo-constants";
 
@@ -14,12 +15,32 @@ export const getBaseURL = () => {
 };
 
 export const authClient = createAuthClient({
-    baseURL: getBaseURL(), 
-    plugins: [
-        expoClient({
-            scheme: "heroui-native-app",
-            storagePrefix: "myapp",
-            storage: SecureStore,
-        })
-    ]
+  baseURL: getBaseURL(), 
+  plugins: [
+    expoClient({
+      scheme: "heroui-native-app",
+      storagePrefix: "myapp",
+      storage: SecureStore,
+    }),
+    inferAdditionalFields({
+      user: {
+        goal: { type: "string", required: false, defaultValue: "maintainWeight" },
+        weight: { type: "number", required: false },
+        weightGoal: { type: "number", required: false },
+        height: { type: "number", required: false },
+        activityLevel: {
+          type: "string",
+          required: false,
+          defaultValue: "lightlyActive",
+        },
+        targetCalories: { type: "number", required: false },
+        targetProtein: { type: "number", required: false },
+        targetCarbs: { type: "number", required: false },
+        targetFat: { type: "number", required: false },
+        targetSugar: { type: "number", required: false },
+        manualOverride: { type: "boolean", required: false },
+        guideSeen: { type: "boolean", defaultValue: false },
+      },
+    }),
+  ]
 });

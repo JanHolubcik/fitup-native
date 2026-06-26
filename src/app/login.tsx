@@ -48,8 +48,9 @@ const LoginScreen = () => {
           router.replace("/(tabs)/dashboard");
         }
       }
-    } catch (err: any) {
-      setError(err.message || "An unexpected error occurred.");
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : "An unexpected error occurred.";
+      setError(msg);
     } finally {
       setLoading(false);
     }
@@ -62,8 +63,9 @@ const LoginScreen = () => {
         provider,
         callbackURL: "/(tabs)/dashboard",
       });
-    } catch (err: any) {
-      setError(err.message || `Failed to sign in with ${provider}`);
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : `Failed to sign in with ${provider}`;
+      setError(msg);
     }
   };
 

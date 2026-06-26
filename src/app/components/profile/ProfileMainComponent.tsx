@@ -8,6 +8,7 @@ import { LanguageAndThemeCard } from "./components/LanguageAndThemeCard";
 import { AccountDetails } from "./components/AccountDetails";
 import { ChangePassword } from "./components/ChangePassword";
 import { useTranslation } from "../../../hooks/useTranslation";
+import BiometricAndGoals from "./components/BiometricAndGoals";
 
 const ProfileMainComponent = () => {
   const { t } = useTranslation("profile");
@@ -33,9 +34,9 @@ const ProfileMainComponent = () => {
         <LanguageAndThemeCard />
 
         <AccountDetails user={user} />
+        <BiometricAndGoals user={user} />
         <ChangePassword />
         {/* Placeholder cards for components to be implemented next */}
-        {/* <BiometricAndGoals user={user} /> */}
         {/* <DeleteAccount /> */}
 
         <Button variant="danger" className="py-3 mt-4 rounded-xl" onPress={handleSignOut}>
