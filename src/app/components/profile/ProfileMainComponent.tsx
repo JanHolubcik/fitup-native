@@ -6,9 +6,10 @@ import { authClient } from "../../lib/auth-client";
 import { ProfileSkeleton } from "./components/ProfileSkeleton";
 import { LanguageAndThemeCard } from "./components/LanguageAndThemeCard";
 import { AccountDetails } from "./components/AccountDetails";
+import { ChangePassword } from "./components/ChangePassword";
 import { useTranslation } from "../../../hooks/useTranslation";
 
-export default function ProfileMainComponent(): React.JSX.Element {
+const ProfileMainComponent = () => {
   const { t } = useTranslation("profile");
   const router = useRouter();
   const { data: session, isPending } = authClient.useSession();
@@ -32,8 +33,8 @@ export default function ProfileMainComponent(): React.JSX.Element {
         <LanguageAndThemeCard />
 
         <AccountDetails user={user} />
+        <ChangePassword />
         {/* Placeholder cards for components to be implemented next */}
-        {/* <ChangePassword /> */}
         {/* <BiometricAndGoals user={user} /> */}
         {/* <DeleteAccount /> */}
 
@@ -43,4 +44,6 @@ export default function ProfileMainComponent(): React.JSX.Element {
       </View>
     </ScrollView>
   );
-}
+};
+
+export default ProfileMainComponent;
