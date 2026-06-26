@@ -5,7 +5,7 @@ const LANGUAGE_NAMES: Record<string, string> = {
   sk: "Slovensky",
 };
 
-export function useTranslation(ns?: string | string[]) {
+export const useTranslation = (ns?: string | string[]) => {
   const { t, i18n } = useReactI18nextTranslation(ns);
 
   const supportedLanguages = Object.keys(i18n.options.resources || {}).map((code) => ({
@@ -21,4 +21,4 @@ export function useTranslation(ns?: string | string[]) {
     },
     supportedLanguages,
   };
-}
+};

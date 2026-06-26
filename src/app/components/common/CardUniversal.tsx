@@ -2,11 +2,11 @@ import React from "react";
 import { Card } from "heroui-native";
 import { twMerge } from "tailwind-merge";
 
-interface CardUniversalProps extends React.ComponentPropsWithoutRef<typeof Card> {
+type CardUniversalProps = React.ComponentPropsWithoutRef<typeof Card> & {
   children: React.ReactNode;
-}
+};
 
-const CardUniversalRoot = ({ children, className, ...props }: CardUniversalProps): React.JSX.Element => {
+const CardUniversalRoot = ({ children, className, ...props }: CardUniversalProps) => {
   return (
     <Card
       className={twMerge(

@@ -6,7 +6,7 @@ import { useTranslation } from "../hooks/useTranslation";
 import { authClient } from "./lib/auth-client";
 import { router } from "expo-router";
 
-export default function LoginScreen() {
+const LoginScreen = () => {
   const { t } = useTranslation();
   const [isSignUp, setIsSignUp] = useState(false);
   const [email, setEmail] = useState("");
@@ -214,4 +214,6 @@ export default function LoginScreen() {
       </ScrollView>
     </KeyboardAvoidingView>
   );
-}
+};
+
+export default LoginScreen;

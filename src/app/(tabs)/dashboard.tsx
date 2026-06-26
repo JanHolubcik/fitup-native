@@ -1,10 +1,9 @@
 import { Tabs } from "expo-router";
 import { Typography } from "heroui-native";
-import type { JSX } from "react";
 import { ScrollView } from "react-native";
 import { useTranslation } from "../../hooks/useTranslation";
 
-export default function DashboardTab(): JSX.Element {
+const DashboardTab = () => {
   const { t } = useTranslation("navbar");
 
   return (
@@ -15,4 +14,6 @@ export default function DashboardTab(): JSX.Element {
       </ScrollView>
     </>
   );
-}
+};
+
+export default DashboardTab;

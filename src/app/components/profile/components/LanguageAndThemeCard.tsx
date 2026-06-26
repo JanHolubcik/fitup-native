@@ -7,7 +7,7 @@ import { useTranslation } from "../../../../hooks/useTranslation";
 import { FlagIcon } from "../../common/FlagIcon";
 import { CardUniversal } from "../../common/CardUniversal";
 
-export function LanguageAndThemeCard(): React.JSX.Element {
+export const LanguageAndThemeCard = () => {
   const { t, locale, changeLanguage, supportedLanguages } = useTranslation("profile");
   const { theme } = useUniwind();
 
@@ -118,4 +118,4 @@ export function LanguageAndThemeCard(): React.JSX.Element {
       </CardUniversal.Body>
     </CardUniversal>
   );
-}
+};

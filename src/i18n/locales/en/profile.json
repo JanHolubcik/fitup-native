@@ -56,6 +56,7 @@
     "success": "Profile updated successfully!",
     "error": "Failed to update.",
     "uploadError": "Failed to upload image",
+    "permissionDenied": "Permission denied",
     "passwordPending": "Updating password...",
     "passwordSuccess": "Password updated successfully!",
     "emailPending": "Updating email...",

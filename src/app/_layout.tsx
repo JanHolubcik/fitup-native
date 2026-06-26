@@ -1,4 +1,4 @@
-import { useEffect, type JSX } from "react";
+import { useEffect } from "react";
 import { Stack, useRouter, useSegments } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { HeroUINativeProvider } from "heroui-native";
@@ -12,7 +12,7 @@ import { queryClient } from "./lib/query-client";
 import "../global.css";
 import "../i18n/i18n";
 
-function AuthProtectedLayout(): JSX.Element {
+const AuthProtectedLayout = () => {
   const { data: session, isPending } = authClient.useSession();
   const segments = useSegments();
   const router = useRouter();
@@ -45,9 +45,9 @@ function AuthProtectedLayout(): JSX.Element {
       <Stack.Screen name="(tabs)" />
     </Stack>
   );
-}
+};
 
-export default function RootLayout(): JSX.Element {
+const RootLayout = () => {
   const { theme } = useUniwind();
   const isDark = theme === "dark";
 
@@ -67,4 +67,6 @@ export default function RootLayout(): JSX.Element {
       </QueryClientProvider>
     </GestureHandlerRootView>
   );
-}
+};
+
+export default RootLayout;

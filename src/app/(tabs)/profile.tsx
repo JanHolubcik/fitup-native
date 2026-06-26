@@ -1,9 +1,8 @@
 import { Tabs } from "expo-router";
-import type { JSX } from "react";
 import { useTranslation } from "../../hooks/useTranslation";
 import ProfileMainComponent from "../components/profile/ProfileMainComponent";
 
-export default function ProfileTab(): JSX.Element {
+const ProfileTab = () => {
   const { t } = useTranslation("navbar");
 
   return (
@@ -12,4 +11,6 @@ export default function ProfileTab(): JSX.Element {
       <ProfileMainComponent />
     </>
   );
-}
+};
+
+export default ProfileTab;

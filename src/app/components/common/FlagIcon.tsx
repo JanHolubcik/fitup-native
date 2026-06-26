@@ -1,13 +1,13 @@
 import React from "react";
 import Svg, { Path, G, ClipPath, Defs } from "react-native-svg";
 
-interface FlagIconProps {
+type FlagIconProps = {
   code: string;
   width?: number;
   height?: number;
-}
+};
 
-export function FlagIcon({ code, width = 21, height = 14 }: FlagIconProps): React.JSX.Element | null {
+export const FlagIcon = ({ code, width = 21, height = 14 }: FlagIconProps) => {
   if (code === "en") {
     return (
       <Svg viewBox="0 0 50 30" width={width} height={height}>
@@ -41,4 +41,4 @@ export function FlagIcon({ code, width = 21, height = 14 }: FlagIconProps): Reac
   }
 
   return null;
-}
+};
