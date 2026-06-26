@@ -16,33 +16,22 @@ import { Formik } from "formik";
 import * as ImagePicker from "expo-image-picker";
 import { useMutation } from "@tanstack/react-query";
 import { useTranslation } from "../../../../hooks/useTranslation";
-import { authClient, getBaseURL } from "../../../lib/auth-client";
-import { createAuthenticatedXHR } from "../../../lib/api-client";
+import { authClient } from "../../../lib/auth-client";
+import { uploadImage } from "../../../lib/api-client";
 import { CardUniversal } from "../../common/CardUniversal";
 
-interface User {
+type User = {
   id: string;
   name: string;
   email: string;
   image?: string | null;
-}
+};
 
-interface AccountDetailsProps {
+type AccountDetailsProps = {
   user: User;
-}
+};
 
-interface UploadResponse {
-  data?: {
-    imageUrl?: string;
-  };
-  imageUrl?: string;
-}
-
-interface RNFormData extends FormData {
-  append(name: string, value: string | Blob | { uri: string; name?: string; type?: string }): void;
-}
-
-export function AccountDetails({ user }: AccountDetailsProps): React.JSX.Element {
+export const AccountDetails = ({ user }: AccountDetailsProps) => {
   const { t } = useTranslation("profile");
   const { toast } = useToast();
   const { theme } = useUniwind();
@@ -53,7 +42,7 @@ export function AccountDetails({ user }: AccountDetailsProps): React.JSX.Element
     try {
       const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
       if (status !== "granted") {
-        toast.show({ label: t("toast.uploadError") || "Permission denied", variant: "danger" });
+        toast.show({ label: t("toast.permissionDenied"), variant: "danger" });
         return;
       }
 
@@ -77,7 +66,7 @@ export function AccountDetails({ user }: AccountDetailsProps): React.JSX.Element
     try {
       const { status } = await ImagePicker.requestCameraPermissionsAsync();
       if (status !== "granted") {
-        toast.show({ label: t("toast.uploadError") || "Permission denied", variant: "danger" });
+        toast.show({ label: t("toast.permissionDenied"), variant: "danger" });
         return;
       }
 
@@ -98,62 +87,24 @@ export function AccountDetails({ user }: AccountDetailsProps): React.JSX.Element
   };
 
   const handleChangePicture = () => {
-    Alert.alert(t("changePicture") || "Change Picture", t("chooseOption") || "Choose an option", [
+    Alert.alert(t("changePicture"), t("chooseOption"), [
       {
-        text: t("chooseFromGallery") || "Choose from Gallery",
+        text: t("chooseFromGallery"),
         onPress: pickImage,
       },
       {
-        text: t("takePhoto") || "Take a Photo",
+        text: t("takePhoto"),
         onPress: takePhoto,
       },
       {
-        text: t("cancel") || "Cancel",
+        text: t("cancel"),
         style: "cancel",
       },
     ]);
   };
 
   const uploadImageMutation = useMutation({
-    mutationFn: async (uri: string): Promise<string> => {
-      return new Promise((resolve, reject) => {
-        const fileName = uri.split("/").pop() || "avatar.jpg";
-        const match = /\.(\w+)$/.exec(fileName);
-        const type = match ? `image/${match[1]}` : `image/jpeg`;
-
-        const formData = new FormData() as RNFormData;
-        formData.append("file", {
-          uri,
-          name: fileName,
-          type,
-        });
-
-        const xhr = createAuthenticatedXHR("POST", `${getBaseURL()}/api/upload`);
-
-        xhr.send(formData);
-
-        xhr.onload = () => {
-          try {
-            const response = JSON.parse(xhr.responseText) as UploadResponse;
-            if (response && response.data && response.data.imageUrl) {
-              resolve(response.data.imageUrl);
-            } else if (response && response.imageUrl) {
-              resolve(response.imageUrl);
-            } else {
-              reject(
-                new Error(t("toast.uploadError") || "No image URL returned from upload server")
-              );
-            }
-          } catch (e) {
-            reject(e);
-          }
-        };
-
-        xhr.onerror = () => {
-          reject(new Error(t("toast.uploadError") || "Network request failed"));
-        };
-      });
-    },
+    mutationFn: uploadImage,
   });
 
   const handleAccountSubmit = async (values: { name: string; image: string }) => {

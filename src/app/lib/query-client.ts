@@ -52,7 +52,7 @@ onlineManager.setEventListener((setOnline) => {
  * 
  * @param refetch The refetch function returned from useQuery.
  */
-export function useRefreshOnScreenFocus<T>(refetch: () => Promise<T>) {
+export const useRefreshOnScreenFocus = <T>(refetch: () => Promise<T>) => {
   const firstTimeRef = React.useRef(true);
 
   useFocusEffect(
@@ -67,4 +67,4 @@ export function useRefreshOnScreenFocus<T>(refetch: () => Promise<T>) {
       });
     }, [refetch])
   );
-}
+};
