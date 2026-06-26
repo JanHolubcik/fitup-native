@@ -1,5 +1,7 @@
 {
   "signOut": "Odhlásiť sa",
+  "signOutConfirm": "Naozaj sa chcete odhlásiť?",
+  "signOutConfirmDesc": "Pre prístup k účtu sa budete musieť znova prihlásiť.",
   "languageAndTheme": "Jazyk a téma",
   "appearance": "Téma",
   "appearanceDesc": "Zvoľ si medzi tmavou a svetlou témou",
