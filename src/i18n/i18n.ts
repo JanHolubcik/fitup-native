@@ -43,6 +43,13 @@ const skTranslations = {
   signup: signupSk,
 };
 
+export const resources = {
+  en: enTranslations,
+  sk: skTranslations,
+} as const;
+
+export type SupportedLocale = keyof typeof resources;
+
 const locales = getLocales();
 const languageCode = locales && locales.length > 0 ? locales[0].languageCode : "en";
 const initialLng = languageCode === "sk" ? "sk" : "en";
@@ -51,10 +58,7 @@ i18next
   .use(initReactI18next)
   .init({
     compatibilityJSON: "v4",
-    resources: {
-      en: enTranslations,
-      sk: skTranslations,
-    },
+    resources,
     nsSeparator: ".",
     keySeparator: ".",
     ns: ["common", "dashboard", "home", "login", "navbar", "onboarding", "profile", "signup"],
