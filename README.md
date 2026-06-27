@@ -1,9 +1,32 @@
-# Welcome to your HeroUI Native app 👋
+# 🥗 Fitup Native (Expo Calorie Tracker)
 
-This is an [Expo](https://expo.dev) project preconfigured with
-[HeroUI Native](https://heroui.com/docs/native), [Uniwind](https://docs.uniwind.dev)
-(Tailwind CSS for React Native), and [Expo Router](https://docs.expo.dev/router/introduction)
-with a bottom-tab layout.
+[![Expo](https://img.shields.io/badge/Expo-SDK%2051-black?logo=expo&style=flat-square)](https://expo.dev/)
+[![React Native](https://img.shields.io/badge/React%20Native-0.74-blue?logo=react&style=flat-square)](https://reactnative.dev/)
+[![HeroUI](https://img.shields.io/badge/HeroUI--Native-latest-orange?style=flat-square)](https://heroui.com/docs/native)
+[![Uniwind](https://img.shields.io/badge/Uniwind-Tailwind-38B2AC?style=flat-square)](https://docs.uniwind.dev)
+
+This is the mobile application version of the **Fitup Calorie & Physical Activity Tracker** project, ported from the original [Next.js web application](https://github.com/JanHolubcik/Fitupjh). It is built using **Expo**, **React Native**, **HeroUI Native**, and **Tailwind CSS (via Uniwind)** with a bottom-tab layout.
+
+---
+
+## Features
+
+TODO: Once they are implemented, they will be checked.
+
+- [ ] **Calorie & Macro Logging Dashboard**: Keep track of daily meals classified by category timeframe. Track total protein, carbs, fats, fiber, sugar, and salt against personalized daily targets.
+- [ ] **Gemini AI Integration**:
+  - [ ] **AI Food Intake Analyzer**: Evaluates daily meals to praise healthy habits, issue warnings, and suggest healthier food alternatives (using structured markup).
+  - [ ] **AI Food Image Recognition**: Snap or upload a photo of your meal to have the AI identify the dish and estimate its nutritional macro.
+- [ ] **Hybrid Barcode Scanner**:
+  - [ ] Uses the browser's native **BarcodeDetector API** (or mobile camera equivalent) for high performance with a fallback to the **ZXing WebAssembly scanner** (`@yudiel/react-qr-scanner`).
+  - [ ] Supports EAN-13, EAN-8, and UPC-A formats.
+  - [ ] Queries local database catalog first; if not found, it calls the **Open Food Facts API**, maps nutritional data, seeds it locally, and logs it.
+- [ ] **Physical Activity & Exercise Tracker**: Log activities (Cardio, Strength, Flexibility, Sports) with MET (Metabolic Equivalent of Task) values to automatically calculate active calorie burn based on user weight.
+- [ ] **Interactive Onboarding Tour**: Guided tours to help new users step-by-step through the application dashboard.
+- [ ] **Internationalization (i18n)**: Fully supports dynamic locale routing/configuration for **English** and **Slovak** (`sk`).
+- [ ] **Secure Authentication**: Implemented via **Better-Auth** supporting email/password and social OAuth providers (Google, GitHub, Discord).
+
+---
 
 ## Get started
 
@@ -28,7 +51,7 @@ In the output, you'll find options to open the app in a
 
 You can start developing by editing the files inside the **src/app** directory. The tabs themselves live under `src/app/(tabs)/`. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
 
-## What's preconfigured
+## Tech Stack (Expo App)
 
 - **HeroUI Native** (`heroui-native`) wrapped in `HeroUINativeProvider` and `GestureHandlerRootView` in `src/app/_layout.tsx`
 - **Uniwind** + **Tailwind CSS** wired through `metro.config.js` and `src/global.css`
