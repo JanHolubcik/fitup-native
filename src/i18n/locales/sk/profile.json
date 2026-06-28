@@ -67,5 +67,21 @@
     "deleteSuccess": "Účet bol úspešne vymazaný!",
     "biometricPending": "Aktualizuje sa biometria...",
     "biometricSuccess": "Biometria bola úspešne aktualizovaná!"
+  },
+  "legal": {
+    "title": "Právne informácie",
+    "privacyPolicy": "Zásady ochrany osobných údajov",
+    "privacyPolicyDesc": "Prečítajte si naše zásady ochrany osobných údajov a zistite, ako narábame s vašimi údajmi.",
+    "termsOfUse": "Podmienky používania",
+    "termsOfUseDesc": "Prečítajte si naše podmienky používania a zistite svoje práva a povinnosti.",
+    "view": "Zobraziť"
+  },
+  "validation": {
+    "weightMin": "Hmotnosť musí byť aspoň 50 kg",
+    "weightMax": "Hmotnosť nemôže presiahnuť 300 kg",
+    "heightMin": "Výška musí byť aspoň 50 cm",
+    "heightMax": "Výška nemôže presiahnuť 300 cm",
+    "weightGoalMin": "Cieľová hmotnosť musí byť aspoň 50 kg",
+    "weightGoalMax": "Cieľová hmotnosť nemôže presiahnuť 300 kg"
   }
 }

@@ -67,5 +67,21 @@
     "deleteSuccess": "Account deleted successfully!",
     "biometricPending": "Updating biometrics...",
     "biometricSuccess": "Biometrics updated successfully!"
+  },
+  "legal": {
+    "title": "Legal & Privacy",
+    "privacyPolicy": "Privacy Policy",
+    "privacyPolicyDesc": "Read our privacy policy to understand how we collect, process, and protect your data.",
+    "termsOfUse": "Terms of Use",
+    "termsOfUseDesc": "Read our terms of use to understand your rights and responsibilities.",
+    "view": "View"
+  },
+  "validation": {
+    "weightMin": "Weight must be at least 50 kg",
+    "weightMax": "Weight cannot exceed 300 kg",
+    "heightMin": "Height must be at least 50 cm",
+    "heightMax": "Height cannot exceed 300 cm",
+    "weightGoalMin": "Goal weight must be at least 50 kg",
+    "weightGoalMax": "Goal weight cannot exceed 300 kg"
   }
 }
