@@ -1,16 +1,16 @@
 import { Ionicons } from "@expo/vector-icons";
 import { Tabs } from "expo-router";
-import type { ComponentProps, JSX } from "react";
+import type { ComponentProps } from "react";
 import type { ColorValue } from "react-native";
 import { useTranslation } from "../../hooks/useTranslation";
 
 type IoniconName = ComponentProps<typeof Ionicons>["name"];
 
-function TabIcon({ name, color }: { name: IoniconName; color: ColorValue }): JSX.Element {
+const TabIcon = ({ name, color }: { name: IoniconName; color: ColorValue }) => {
   return <Ionicons name={name} size={24} color={color} />;
-}
+};
 
-export default function TabsLayout(): JSX.Element {
+const TabsLayout = () => {
   const { t } = useTranslation();
 
   return (
@@ -37,4 +37,6 @@ export default function TabsLayout(): JSX.Element {
       />
     </Tabs>
   );
-}
+};
+
+export default TabsLayout;
