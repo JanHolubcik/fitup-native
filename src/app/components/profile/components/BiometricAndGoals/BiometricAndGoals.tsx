@@ -7,6 +7,7 @@ import useBiometricAndGoals from "./hooks/useBiometricAndGoals";
 import BiometricAndGoalsForm from "./BiometricAndGoalsForm";
 import CardUniversal from "@/app/components/common/CardUniversal";
 import { useTranslation } from "react-i18next";
+import { updateUserSchema } from "@/app/lib/validationShemas/userValidationSchema";
 
 type User = typeof authClient.$Infer.Session.user;
 
@@ -17,6 +18,26 @@ type BiometricAndGoalsProps = {
 const BiometricAndGoals = ({ user }: BiometricAndGoalsProps) => {
   const { t } = useTranslation("profile");
   const { handleBiometricsSubmit } = useBiometricAndGoals();
+
+  const validate = (values: {
+    weight: string;
+    weightGoal: string;
+    height: string;
+    activityLevel: string;
+    goal: string;
+  }) => {
+    const result = updateUserSchema.safeParse(values);
+    if (result.success) return {};
+
+    const errors: Record<string, string> = {};
+    for (const issue of result.error.issues) {
+      const path = issue.path[0];
+      if (path) {
+        errors[path as string] = issue.message;
+      }
+    }
+    return errors;
+  };
 
   return (
     <CardUniversal>
@@ -35,6 +56,7 @@ const BiometricAndGoals = ({ user }: BiometricAndGoalsProps) => {
           activityLevel: user.activityLevel || "sedentary",
           goal: user.goal || "loseWeight",
         }}
+        validate={validate}
         onSubmit={async (values, { setSubmitting }) => {
           await handleBiometricsSubmit(values);
           setSubmitting(false);
