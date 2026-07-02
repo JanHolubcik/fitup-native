@@ -1,6 +1,7 @@
 import { Redirect } from "expo-router";
-import type { JSX } from "react";
 
-export default function IndexRedirect(): JSX.Element {
+const IndexRedirect = () => {
   return <Redirect href="/(tabs)/dashboard" />;
-}
+};
+
+export default IndexRedirect;

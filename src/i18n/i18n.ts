@@ -1,7 +1,8 @@
+/* eslint-disable import/no-named-as-default-member */
 import { getLocales } from "expo-localization";
-import { I18n } from "i18n-js";
+import i18next from "i18next";
+import { initReactI18next } from "react-i18next";
 
-// Import English translations
 import commonEn from "./locales/en/common.json";
 import dashboardEn from "./locales/en/dashboard.json";
 import homeEn from "./locales/en/home.json";
@@ -11,7 +12,6 @@ import onboardingEn from "./locales/en/onboarding.json";
 import profileEn from "./locales/en/profile.json";
 import signupEn from "./locales/en/signup.json";
 
-// Import Slovak translations
 import commonSk from "./locales/sk/common.json";
 import dashboardSk from "./locales/sk/dashboard.json";
 import homeSk from "./locales/sk/home.json";
@@ -43,32 +43,34 @@ const skTranslations = {
   signup: signupSk,
 };
 
-const i18n = new I18n({
+export const resources = {
   en: enTranslations,
   sk: skTranslations,
-});
+} as const;
 
-// Detect device language
+export type SupportedLocale = keyof typeof resources;
+
 const locales = getLocales();
 const languageCode = locales && locales.length > 0 ? locales[0].languageCode : "en";
+const initialLng = languageCode === "sk" ? "sk" : "en";
 
-// Set initial locale (default to 'en' if not 'sk')
-i18n.locale = languageCode === "sk" ? "sk" : "en";
-i18n.enableFallback = true;
+i18next
+  .use(initReactI18next)
+  .init({
+    compatibilityJSON: "v4",
+    resources,
+    nsSeparator: ".",
+    keySeparator: ".",
+    ns: ["common", "dashboard", "home", "login", "navbar", "onboarding", "profile", "signup"],
+    defaultNS: "common",
+    lng: initialLng,
+    fallbackLng: "en",
+    interpolation: {
+      escapeValue: false, 
+    },
+    react: {
+      useSuspense: false, 
+    },
+  });
 
-// Reactive listener system for locale changes
-const listeners = new Set<(locale: string) => void>();
-
-export const changeLanguage = (newLocale: string) => {
-  i18n.locale = newLocale;
-  listeners.forEach((listener) => listener(newLocale));
-};
-
-export const subscribeToLocaleChange = (listener: (locale: string) => void) => {
-  listeners.add(listener);
-  return () => {
-    listeners.delete(listener);
-  };
-};
-
-export default i18n;
+export default i18next;
