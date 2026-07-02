@@ -5,7 +5,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { useFormikContext } from "formik";
 import { useUniwind } from "uniwind";
 import { useTranslation } from "../../../../../hooks/useTranslation";
-import { CardUniversal } from "../../../common/CardUniversal";
+import CardUniversal from "../../../common/CardUniversal";
 
 type AccountDetailsFormProps = {
   avatarDisplayUri: string;

@@ -18,7 +18,7 @@ const CardUniversalRoot = ({ children, className, ...props }: CardUniversalProps
   );
 };
 
-export const CardUniversal = Object.assign(CardUniversalRoot, {
+const CardUniversal = Object.assign(CardUniversalRoot, {
   Header: Card.Header,
   Body: Card.Body,
   Footer: Card.Footer,

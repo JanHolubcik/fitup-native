@@ -5,7 +5,7 @@ import { useUniwind } from "uniwind";
 import { Formik } from "formik";
 import { useTranslation } from "../../../../hooks/useTranslation";
 import { authClient } from "../../../lib/auth-client";
-import { CardUniversal } from "../../common/CardUniversal";
+import CardUniversal from "../../common/CardUniversal";
 
 export const ChangePassword = () => {
   const { t } = useTranslation("profile");

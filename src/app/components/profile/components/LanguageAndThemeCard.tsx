@@ -5,7 +5,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { useUniwind, Uniwind } from "uniwind";
 import { useTranslation } from "../../../../hooks/useTranslation";
 import { FlagIcon } from "../../common/FlagIcon";
-import { CardUniversal } from "../../common/CardUniversal";
+import CardUniversal from "../../common/CardUniversal";
 
 export const LanguageAndThemeCard = () => {
   const { t, locale, changeLanguage, supportedLanguages } = useTranslation("profile");
@@ -84,7 +84,7 @@ export const LanguageAndThemeCard = () => {
               presentation="dialog"
             >
               <Select.Trigger className="flex-row items-center justify-between border border-zinc-200 dark:border-zinc-800 px-2.5 py-2 rounded-xl bg-zinc-50 dark:bg-zinc-950 h-10 w-full">
-                <FlagIcon code={locale} width={22} height={15} />
+                <FlagIcon code={locale as "en" | "sk"} width={22} height={15} />
                 <Select.TriggerIndicator />
               </Select.Trigger>
               <Select.Portal>
@@ -104,7 +104,7 @@ export const LanguageAndThemeCard = () => {
                       className={`flex-row items-center justify-between py-3 px-3 rounded-xl active:bg-zinc-100 dark:active:bg-zinc-800 ${index > 0 ? "mt-1" : ""}`}
                     >
                       <View className="flex-row items-center gap-2.5">
-                        <FlagIcon code={lang.code} width={20} height={13} />
+                        <FlagIcon code={lang.code as "en" | "sk"} width={20} height={13} />
                         <Select.ItemLabel className="text-zinc-900 dark:text-white font-semibold text-sm" />
                       </View>
                       <Select.ItemIndicator />

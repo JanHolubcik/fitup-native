@@ -2,7 +2,7 @@ import React from "react";
 import { Separator, Typography } from "heroui-native";
 import { Formik } from "formik";
 import { useTranslation } from "../../../../../hooks/useTranslation";
-import { CardUniversal } from "../../../common/CardUniversal";
+import CardUniversal from "../../../common/CardUniversal";
 import useAccountDetails from "./hooks/useAccountDetails";
 import { authClient } from "@/app/lib/auth-client";
 import AccountDetailsForm from "./AccountDetailsForm";
