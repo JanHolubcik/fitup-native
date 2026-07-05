@@ -11,6 +11,8 @@ import navbarEn from "./locales/en/navbar.json";
 import onboardingEn from "./locales/en/onboarding.json";
 import profileEn from "./locales/en/profile.json";
 import signupEn from "./locales/en/signup.json";
+import privacyEn from "./locales/en/privacy.json";
+import termsEn from "./locales/en/terms.json";
 
 import commonSk from "./locales/sk/common.json";
 import dashboardSk from "./locales/sk/dashboard.json";
@@ -20,6 +22,8 @@ import navbarSk from "./locales/sk/navbar.json";
 import onboardingSk from "./locales/sk/onboarding.json";
 import profileSk from "./locales/sk/profile.json";
 import signupSk from "./locales/sk/signup.json";
+import privacySk from "./locales/sk/privacy.json";
+import termsSk from "./locales/sk/terms.json";
 
 const enTranslations = {
   common: commonEn,
@@ -30,6 +34,8 @@ const enTranslations = {
   onboarding: onboardingEn,
   profile: profileEn,
   signup: signupEn,
+  privacy: privacyEn,
+  terms: termsEn,
 };
 
 const skTranslations = {
@@ -41,6 +47,8 @@ const skTranslations = {
   onboarding: onboardingSk,
   profile: profileSk,
   signup: signupSk,
+  privacy: privacySk,
+  terms: termsSk,
 };
 
 export const resources = {
@@ -54,23 +62,32 @@ const locales = getLocales();
 const languageCode = locales && locales.length > 0 ? locales[0].languageCode : "en";
 const initialLng = languageCode === "sk" ? "sk" : "en";
 
-i18next
-  .use(initReactI18next)
-  .init({
-    compatibilityJSON: "v4",
-    resources,
-    nsSeparator: ".",
-    keySeparator: ".",
-    ns: ["common", "dashboard", "home", "login", "navbar", "onboarding", "profile", "signup"],
-    defaultNS: "common",
-    lng: initialLng,
-    fallbackLng: "en",
-    interpolation: {
-      escapeValue: false, 
-    },
-    react: {
-      useSuspense: false, 
-    },
-  });
+i18next.use(initReactI18next).init({
+  compatibilityJSON: "v4",
+  resources,
+  nsSeparator: ".",
+  keySeparator: ".",
+  ns: [
+    "common",
+    "dashboard",
+    "home",
+    "login",
+    "navbar",
+    "onboarding",
+    "profile",
+    "signup",
+    "privacy",
+    "terms",
+  ],
+  defaultNS: "common",
+  lng: initialLng,
+  fallbackLng: "en",
+  interpolation: {
+    escapeValue: false,
+  },
+  react: {
+    useSuspense: false,
+  },
+});
 
 export default i18next;

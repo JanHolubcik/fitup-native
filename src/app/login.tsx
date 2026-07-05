@@ -1,11 +1,5 @@
 import React, { useState, ComponentProps } from "react";
-import {
-  View,
-  ScrollView,
-  KeyboardAvoidingView,
-  Platform,
-  Pressable,
-} from "react-native";
+import { View, ScrollView, KeyboardAvoidingView, Platform, Pressable } from "react-native";
 import { Typography } from "heroui-native";
 import { FontAwesome, Ionicons } from "@expo/vector-icons";
 import { useTranslation } from "../hooks/useTranslation";
@@ -14,6 +8,7 @@ import { authClient } from "./lib/auth-client";
 import Animated, { FadeIn, FadeOut, LinearTransition } from "react-native-reanimated";
 import LoginForm from "./components/auth/LoginForm";
 import RegisterForm from "./components/auth/RegisterForm";
+import { router } from "expo-router";
 
 type FontAwesomeIconName = ComponentProps<typeof FontAwesome>["name"];
 
@@ -26,14 +21,7 @@ type OAuthButtonProps = {
   isDark: boolean;
 };
 
-const OAuthButton = ({
-  provider,
-  icon,
-  labelKey,
-  onPress,
-  loading,
-  isDark,
-}: OAuthButtonProps) => {
+const OAuthButton = ({ provider, icon, labelKey, onPress, loading, isDark }: OAuthButtonProps) => {
   return (
     <Pressable
       className="w-16 h-14 rounded-2xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 justify-center items-center"
@@ -193,6 +181,30 @@ const LoginScreen = () => {
                 isDark={isDark}
               />
             </View>
+
+            {!isSignUp && (
+              <View className="flex-row flex-wrap justify-center items-center mt-2 px-4">
+                <Typography.Paragraph className="text-xs text-zinc-400 dark:text-zinc-500 text-center">
+                  {t("login.byContinuing")}
+                </Typography.Paragraph>
+                <Pressable onPress={() => router.push("/terms")} className="active:opacity-70">
+                  <Typography.Paragraph className="text-xs font-semibold text-blue-600 dark:text-blue-500">
+                    {t("signup.termsOfUseLinkText")}
+                  </Typography.Paragraph>
+                </Pressable>
+                <Typography.Paragraph className="text-xs text-zinc-400 dark:text-zinc-500">
+                  {t("signup.andText")}
+                </Typography.Paragraph>
+                <Pressable onPress={() => router.push("/privacy")} className="active:opacity-70">
+                  <Typography.Paragraph className="text-xs font-semibold text-blue-600 dark:text-blue-500">
+                    {t("signup.privacyPolicyLinkText")}
+                  </Typography.Paragraph>
+                </Pressable>
+                <Typography.Paragraph className="text-xs text-zinc-400 dark:text-zinc-500">
+                  {t("signup.agreePeriod")}
+                </Typography.Paragraph>
+              </View>
+            )}
           </Animated.View>
         </View>
       </ScrollView>

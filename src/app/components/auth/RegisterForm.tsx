@@ -353,42 +353,73 @@ const RegisterForm = ({ onLoadingChange, disabled }: RegisterFormProps) => {
       </View>
 
       {/* Terms of Use & Privacy Checkbox */}
-      <Pressable
-        onPress={() => {
-          if (!isFormDisabled) {
-            formik.setFieldValue("termsAccepted", !formik.values.termsAccepted);
-          }
-        }}
-        className="flex-row items-center w-full my-2 active:opacity-85"
-        disabled={isFormDisabled}
-      >
-        <View
-          className={`w-5 h-5 rounded-md border items-center justify-center mr-3 ${
-            formik.values.termsAccepted
-              ? "bg-blue-600 border-blue-600"
-              : "border-zinc-300 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900"
-          }`}
+      <View className="flex-row items-start w-full my-2">
+        <Pressable
+          onPress={() => {
+            if (!isFormDisabled) {
+              formik.setFieldValue("termsAccepted", !formik.values.termsAccepted);
+            }
+          }}
+          className="flex-row items-center active:opacity-85 mr-3 mt-0.5"
+          disabled={isFormDisabled}
+          accessibilityLabel={t("agreeText")}
         >
-          {formik.values.termsAccepted && <Ionicons name="checkmark" size={14} color="white" />}
-        </View>
+          <View
+            className={`w-5 h-5 rounded-md border items-center justify-center ${
+              formik.values.termsAccepted
+                ? "bg-blue-600 border-blue-600"
+                : "border-zinc-300 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900"
+            }`}
+          >
+            {formik.values.termsAccepted && <Ionicons name="checkmark" size={14} color="white" />}
+          </View>
+        </Pressable>
         <View className="flex-1 flex-row flex-wrap items-center">
-          <Typography.Paragraph className="text-xs text-zinc-500 dark:text-zinc-400">
-            {t("agreeText")}
-          </Typography.Paragraph>
-          <Typography.Paragraph className="text-xs font-semibold text-blue-600 dark:text-blue-500">
-            {t("termsOfUseLinkText")}
-          </Typography.Paragraph>
-          <Typography.Paragraph className="text-xs text-zinc-500 dark:text-zinc-400">
-            {t("andText")}
-          </Typography.Paragraph>
-          <Typography.Paragraph className="text-xs font-semibold text-blue-600 dark:text-blue-500">
-            {t("privacyPolicyLinkText")}
-          </Typography.Paragraph>
-          <Typography.Paragraph className="text-xs text-zinc-500 dark:text-zinc-400">
-            {t("agreePeriod")}
-          </Typography.Paragraph>
+          <Pressable
+            onPress={() => {
+              if (!isFormDisabled) {
+                formik.setFieldValue("termsAccepted", !formik.values.termsAccepted);
+              }
+            }}
+          >
+            <Typography.Paragraph className="text-xs text-zinc-500 dark:text-zinc-400">
+              {t("agreeText")}
+            </Typography.Paragraph>
+          </Pressable>
+          <Pressable onPress={() => router.push("/terms")} className="active:opacity-70">
+            <Typography.Paragraph className="text-xs font-semibold text-blue-600 dark:text-blue-500">
+              {t("termsOfUseLinkText")}
+            </Typography.Paragraph>
+          </Pressable>
+          <Pressable
+            onPress={() => {
+              if (!isFormDisabled) {
+                formik.setFieldValue("termsAccepted", !formik.values.termsAccepted);
+              }
+            }}
+          >
+            <Typography.Paragraph className="text-xs text-zinc-500 dark:text-zinc-400">
+              {t("andText")}
+            </Typography.Paragraph>
+          </Pressable>
+          <Pressable onPress={() => router.push("/privacy")} className="active:opacity-70">
+            <Typography.Paragraph className="text-xs font-semibold text-blue-600 dark:text-blue-500">
+              {t("privacyPolicyLinkText")}
+            </Typography.Paragraph>
+          </Pressable>
+          <Pressable
+            onPress={() => {
+              if (!isFormDisabled) {
+                formik.setFieldValue("termsAccepted", !formik.values.termsAccepted);
+              }
+            }}
+          >
+            <Typography.Paragraph className="text-xs text-zinc-500 dark:text-zinc-400">
+              {t("agreePeriod")}
+            </Typography.Paragraph>
+          </Pressable>
         </View>
-      </Pressable>
+      </View>
 
       {formik.status && (
         <Typography.Paragraph className="text-red-500 text-sm font-semibold text-center mt-1">
