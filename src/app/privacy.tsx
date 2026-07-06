@@ -19,7 +19,6 @@ const PrivacyScreen = () => {
 
   return (
     <View className="flex-1 bg-white dark:bg-zinc-950">
-      {/* Header */}
       <View
         className="flex-row items-center border-b border-zinc-200 dark:border-zinc-800 px-4 pb-4 bg-white dark:bg-zinc-950"
         style={{
@@ -36,8 +35,6 @@ const PrivacyScreen = () => {
           </Typography.Paragraph>
         </Pressable>
       </View>
-
-      {/* Content */}
       <ScrollView
         className="flex-1"
         contentContainerStyle={{

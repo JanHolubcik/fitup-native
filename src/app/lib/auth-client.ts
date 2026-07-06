@@ -4,18 +4,20 @@ import { inferAdditionalFields } from "better-auth/client/plugins";
 import * as SecureStore from "expo-secure-store";
 import Constants from "expo-constants";
 
-export const getBaseURL = () => {
+export const getBaseURL = (): string | undefined => {
   if (__DEV__) {
     // Constants.expoConfig?.hostUri holds the host computer's IP address (e.g. 192.168.1.150:8081)
     const host = Constants.expoConfig?.hostUri?.split(":")[0];
     return host ? `http://${host}:3000` : "http://localhost:3000";
   }
   // TODO: Replace with your production server URL
-  return "https://your-production-url.com";
+  if (process.env.EXPO_PUBLIC_API_URL) {
+    return process.env.EXPO_PUBLIC_API_URL;
+  }
 };
 
 export const authClient = createAuthClient({
-  baseURL: getBaseURL(), 
+  baseURL: getBaseURL(),
   plugins: [
     expoClient({
       scheme: "heroui-native-app",
@@ -43,5 +45,5 @@ export const authClient = createAuthClient({
         termsAccepted: { type: "boolean", defaultValue: false },
       },
     }),
-  ]
+  ],
 });

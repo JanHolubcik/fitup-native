@@ -1,10 +1,4 @@
-export type MacroType =
-  | "calories"
-  | "protein"
-  | "carbohydrates"
-  | "fat"
-  | "sugar"
-  | "fiber";
+export type MacroType = "calories" | "protein" | "carbohydrates" | "fat" | "sugar" | "fiber";
 
 type ThemeStyles = {
   text: string;
@@ -61,10 +55,7 @@ export const MacroArray: MacroType[] = [
   "fiber",
 ];
 
-export const getMacroInfo = (
-  macroType: MacroType,
-  value: number | undefined,
-) => {
+export const getMacroInfo = (macroType: MacroType, value: number | undefined) => {
   const shortLabel = macroType.charAt(0);
   const fullLabel = macroType;
   return {

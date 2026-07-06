@@ -1,19 +1,22 @@
 import { Tabs } from "expo-router";
-import { Typography } from "heroui-native";
-import { ScrollView } from "react-native";
+import { View, Platform } from "react-native";
 import { useTranslation } from "../../hooks/useTranslation";
+import FoodSearch from "../components/dashboard/FoodSearch";
 
 const DashboardTab = () => {
   const { t } = useTranslation("navbar");
 
+  const paddingTop = Platform.OS === "ios" ? 60 : 40;
+
   return (
     <>
       <Tabs.Screen options={{ title: t("dashboard") }} />
-      <ScrollView className="flex-1 bg-background" contentContainerStyle={{ padding: 16 }}>
-        <Typography.Paragraph>{t("dashboard")}</Typography.Paragraph>
-      </ScrollView>
+      <View className="flex-1 bg-background px-4 pb-4" style={{ paddingTop }}>
+        <FoodSearch />
+      </View>
     </>
   );
 };
 
 export default DashboardTab;
+

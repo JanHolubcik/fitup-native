@@ -3,14 +3,47 @@ import { Stack, useRouter, useSegments } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { HeroUINativeProvider } from "heroui-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-import { ActivityIndicator, View } from "react-native";
-import { authClient } from "./lib/auth-client";
+import { ActivityIndicator, View, Platform } from "react-native";
+import { authClient, getBaseURL } from "./lib/auth-client";
+import { getAuthHeaders } from "./lib/api-client";
 import { useUniwind } from "uniwind";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "./lib/query-client";
 
 import "../global.css";
 import "../i18n/i18n";
+
+// Patch global fetch to resolve relative URLs and attach session headers in native environment
+if (Platform.OS !== "web") {
+  const originalFetch = globalThis.fetch;
+  globalThis.fetch = (input: RequestInfo | URL, init?: RequestInit) => {
+    let url = typeof input === "string" ? input : input.toString();
+    const baseUrl = (getBaseURL() || "").replace(/\/$/, "");
+
+    // Stricter domain checks to prevent leaking credentials to third-party APIs
+    const isRelative = url.startsWith("/");
+    const isLocalApi = isRelative || (baseUrl && url.startsWith(baseUrl));
+
+    if (isRelative) {
+      url = `${baseUrl}${url}`;
+    }
+
+    // Auto-inject session/auth headers ONLY for requests to our own backend /api endpoints
+    if (isLocalApi && url.includes("/api/")) {
+      const authHeaders = getAuthHeaders();
+      const mergedHeaders = {
+        ...authHeaders,
+        ...(init?.headers || {}),
+      };
+      init = {
+        ...(init || {}),
+        headers: mergedHeaders,
+      };
+    }
+
+    return originalFetch(url, init);
+  };
+}
 
 const AuthProtectedLayout = () => {
   const { data: session, isPending } = authClient.useSession();
