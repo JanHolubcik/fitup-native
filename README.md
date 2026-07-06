@@ -23,7 +23,7 @@ TODO: Once they are implemented, they will be checked.
   - [ ] Queries local database catalog first; if not found, it calls the **Open Food Facts API**, maps nutritional data, seeds it locally, and logs it.
 - [ ] **Physical Activity & Exercise Tracker**: Log activities (Cardio, Strength, Flexibility, Sports) with MET (Metabolic Equivalent of Task) values to automatically calculate active calorie burn based on user weight.
 - [ ] **Interactive Onboarding Tour**: Guided tours to help new users step-by-step through the application dashboard.
-- [ ] **Internationalization (i18n)**: Fully supports dynamic locale routing/configuration for **English** and **Slovak** (`sk`).
+- [x] **Internationalization (i18n)**: Fully supports dynamic locale routing/configuration for **English** and **Slovak** (`sk`).
 - [ ] **Secure Authentication**: Implemented via **Better-Auth** supporting email/password and social OAuth providers (Google, GitHub, Discord).
 
 ---

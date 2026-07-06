@@ -40,6 +40,7 @@ export const authClient = createAuthClient({
         targetSugar: { type: "number", required: false },
         manualOverride: { type: "boolean", required: false },
         guideSeen: { type: "boolean", defaultValue: false },
+        termsAccepted: { type: "boolean", defaultValue: false },
       },
     }),
   ]
