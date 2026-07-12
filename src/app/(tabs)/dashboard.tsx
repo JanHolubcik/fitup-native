@@ -2,9 +2,12 @@ import { Tabs } from "expo-router";
 import { View, Platform } from "react-native";
 import { useTranslation } from "../../hooks/useTranslation";
 import FoodSearch from "../components/dashboard/FoodSearch";
+import useYourIntakeOperations from "../../hooks/useYourIntakeOperations";
 
 const DashboardTab = () => {
   const { t } = useTranslation("navbar");
+
+  const { savedFood: _savedFood } = useYourIntakeOperations();
 
   const paddingTop = Platform.OS === "ios" ? 60 : 40;
 
@@ -19,4 +22,3 @@ const DashboardTab = () => {
 };
 
 export default DashboardTab;
-
