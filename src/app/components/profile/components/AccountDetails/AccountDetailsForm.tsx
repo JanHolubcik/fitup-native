@@ -1,6 +1,6 @@
 import React from "react";
-import { View, Pressable } from "react-native";
-import { Button, TextField, Label, Input, Avatar } from "heroui-native";
+import { View, Pressable, Image } from "react-native";
+import { Button, TextField, Label, Input, Typography } from "heroui-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useFormikContext } from "formik";
 import { useUniwind } from "uniwind";
@@ -33,15 +33,15 @@ const AccountDetailsForm = ({
           className="relative active:scale-95 transition-transform"
         >
           <View className="relative">
-            <Avatar
-              size="lg"
-              className="w-24 h-24 rounded-full border-4 border-zinc-100 dark:border-zinc-800 shadow-md"
-            >
-              {avatarDisplayUri ? <Avatar.Image source={{ uri: avatarDisplayUri }} /> : null}
-              <Avatar.Fallback className="text-2xl font-bold bg-zinc-200 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300">
-                {values.name ? values.name.substring(0, 2).toUpperCase() : "?"}
-              </Avatar.Fallback>
-            </Avatar>
+            <View className="w-24 h-24 rounded-full border-4 border-zinc-100 dark:border-zinc-800 shadow-md overflow-hidden bg-zinc-200 dark:bg-zinc-800 items-center justify-center">
+              {avatarDisplayUri ? (
+                <Image source={{ uri: avatarDisplayUri }} className="w-full h-full" />
+              ) : (
+                <Typography.Paragraph className="text-2xl font-bold text-zinc-700 dark:text-zinc-300 uppercase">
+                  {values.name ? values.name.substring(0, 2).toUpperCase() : "?"}
+                </Typography.Paragraph>
+              )}
+            </View>
             <View className="absolute bottom-0 right-0 bg-blue-600 dark:bg-blue-500 p-1 rounded-full border-2 border-white dark:border-zinc-900 shadow-md">
               <Ionicons name="camera" size={16} color="white" />
             </View>

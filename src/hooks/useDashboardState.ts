@@ -1,5 +1,6 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { format } from "date-fns";
+import { TimeOfDay } from "../types/Types";
 
 const useCurrentDate = () => {
   const queryClient = useQueryClient();
@@ -33,4 +34,36 @@ const useNewFoodBarCode = () => {
   return [newFoodBarCode, setNewFoodBarCode] as const;
 };
 
-export { useCurrentDate, useNewFoodBarCode };
+const useIsSearchOpen = () => {
+  const queryClient = useQueryClient();
+  const { data: isSearchOpen = false } = useQuery<boolean>({
+    queryKey: ["isSearchOpen"],
+    queryFn: () => false,
+    staleTime: Infinity,
+    gcTime: Infinity,
+  });
+
+  const setIsSearchOpen = (isOpen: boolean) => {
+    queryClient.setQueryData(["isSearchOpen"], isOpen);
+  };
+
+  return [isSearchOpen, setIsSearchOpen] as const;
+};
+
+const useActiveTimeFrame = () => {
+  const queryClient = useQueryClient();
+  const { data: activeTimeFrame = "breakfast" } = useQuery<TimeOfDay>({
+    queryKey: ["activeTimeFrame"],
+    queryFn: () => "breakfast",
+    staleTime: Infinity,
+    gcTime: Infinity,
+  });
+
+  const setActiveTimeFrame = (timeFrame: TimeOfDay) => {
+    queryClient.setQueryData(["activeTimeFrame"], timeFrame);
+  };
+
+  return [activeTimeFrame, setActiveTimeFrame] as const;
+};
+
+export { useCurrentDate, useNewFoodBarCode, useIsSearchOpen, useActiveTimeFrame };

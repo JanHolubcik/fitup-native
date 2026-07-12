@@ -1,6 +1,7 @@
 import React from "react";
 import { TextField, Label, Select, Typography } from "heroui-native";
 import { useFormikContext } from "formik";
+import { useUniwind } from "uniwind";
 import { useTranslation } from "../../../../../../hooks/useTranslation";
 
 const GOAL_OPTIONS = [
@@ -11,6 +12,8 @@ const GOAL_OPTIONS = [
 
 const GoalSelect = () => {
   const { t } = useTranslation("profile");
+  const { theme } = useUniwind();
+  const isDark = theme === "dark";
   const { values, setFieldValue, isSubmitting } = useFormikContext<{ goal: string }>();
 
   const goalOptions = GOAL_OPTIONS.map((opt) => ({
@@ -40,7 +43,7 @@ const GoalSelect = () => {
           <Select.Overlay className="bg-black/50" />
           <Select.Content
             presentation="dialog"
-            className="bg-white dark:bg-zinc-900 p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 w-[80%] max-w-[280px] self-center"
+            className={`bg-white dark:bg-zinc-900 p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 w-[80%] max-w-[280px] self-center ${isDark ? "dark" : ""}`}
           >
             <Select.ListLabel className="text-zinc-400 dark:text-zinc-500 text-xs font-bold uppercase tracking-wider mb-3 px-2">
               {t("primaryGoal")}

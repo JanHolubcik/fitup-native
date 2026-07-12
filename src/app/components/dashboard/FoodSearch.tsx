@@ -63,7 +63,6 @@ const FoodSearch = () => {
 
   return (
     <View className="flex-1 w-full gap-4">
-      {/* Search Input Box */}
       <View
         className={`flex-row items-center bg-zinc-50 dark:bg-zinc-900 border rounded-2xl px-4 h-14 ${
           inputFocused
@@ -112,9 +111,8 @@ const FoodSearch = () => {
               className="border border-zinc-200 dark:border-zinc-800 shadow-sm rounded-2xl"
             >
               <Card.Body className="p-4 flex-row gap-4 items-center">
-                {/* Image Placeholder Skeleton */}
                 <Skeleton className="w-24 h-24 rounded-xl bg-default-soft" />
-                {/* Details Skeleton */}
+
                 <View className="flex-1 gap-2">
                   <Skeleton className="h-5 w-3/4 rounded-md bg-default-soft" />
                   <Skeleton className="h-4 w-1/2 rounded-md bg-default-soft" />
@@ -153,7 +151,6 @@ const FoodSearch = () => {
             </CardUniversal.Body>
           </CardUniversal>
         ) : foodOptions && foodOptions.length > 0 ? (
-          // Food List Results
           foodOptions.map((food, index) => {
             return (
               <Card
@@ -164,12 +161,11 @@ const FoodSearch = () => {
                 <Card.Body className="p-4 flex-row gap-4 items-center">
                   <ImageFromURL
                     url={food.imgUrl}
-                    macroName={food.originalName ? food.originalName : food.name}
+                    macroName={food.originalName || food.name}
                     width={96}
                     height={96}
                   />
 
-                  {/* Food Details */}
                   <View className="flex-1 justify-center gap-1.5">
                     <Typography.Heading
                       type="h4"
@@ -183,7 +179,6 @@ const FoodSearch = () => {
                       {food.calories_per_100g} {t("todayMacros.kcal")} / 100g
                     </Typography.Paragraph>
 
-                    {/* Macronutrient badges */}
                     <View className="flex-row gap-2 flex-wrap mt-0.5">
                       {(
                         [
