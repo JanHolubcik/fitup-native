@@ -3,6 +3,7 @@ import { View, TextInput, ScrollView, ActivityIndicator, Pressable } from "react
 import { useQuery } from "@tanstack/react-query";
 import { Ionicons } from "@expo/vector-icons";
 import { Dialog, Typography, Button, Skeleton } from "heroui-native";
+import { useRouter } from "expo-router";
 
 import { useTranslation } from "@/hooks/useTranslation";
 import { useDebounce } from "@/utils/FunctionsHelper";
@@ -24,6 +25,7 @@ const ModalFindFood = ({ isOpen, onOpenChange, timeOfDay = "breakfast" }: ModalF
   const { t, locale } = useTranslation("dashboard");
   const { theme } = useUniwind();
   const isDark = theme === "dark";
+  const router = useRouter();
 
   const [searchTerm, setSearchTerm] = useState("");
   const [isTyping, setIsTyping] = useState(false);
@@ -31,6 +33,14 @@ const ModalFindFood = ({ isOpen, onOpenChange, timeOfDay = "breakfast" }: ModalF
   const [isRecordModalOpen, setIsRecordModalOpen] = useState(false);
 
   const debouncedSearchTerm = useDebounce(searchTerm, 500, setIsTyping);
+
+  const handleOpenScanner = () => {
+    onOpenChange(false);
+    router.replace({
+      pathname: "/(tabs)/add-record",
+      params: { mode: "scanner" }
+    });
+  };
 
   const {
     data: foodOptions,
@@ -95,6 +105,30 @@ const ModalFindFood = ({ isOpen, onOpenChange, timeOfDay = "breakfast" }: ModalF
               <Typography.Paragraph className="text-xs text-zinc-500 dark:text-zinc-400">
                 {t("tour.manualSearch.description")}
               </Typography.Paragraph>
+            </View>
+
+            <View className="flex-row gap-3 w-full">
+              <Pressable
+                onPress={handleOpenScanner}
+                className="flex-1 bg-green-500/10 border border-green-500/20 py-2.5 rounded-xl flex-row justify-center items-center gap-2 active:opacity-75"
+                style={{ borderCurve: "continuous" }}
+              >
+                <Ionicons name="barcode-outline" size={16} color="#22c55e" />
+                <Typography.Paragraph className="text-xs font-bold text-green-600 dark:text-green-400">
+                  {t("modalScanFood.scanBarcodeBtn")}
+                </Typography.Paragraph>
+              </Pressable>
+
+              <Pressable
+                disabled
+                className="flex-1 bg-purple-500/10 border border-purple-500/20 py-2.5 rounded-xl flex-row justify-center items-center gap-2 opacity-50"
+                style={{ borderCurve: "continuous" }}
+              >
+                <Ionicons name="sparkles-outline" size={16} color="#a855f7" />
+                <Typography.Paragraph className="text-xs font-bold text-purple-600 dark:text-purple-400">
+                  {t("modalScanFood.useAIBtn")}
+                </Typography.Paragraph>
+              </Pressable>
             </View>
 
             <View

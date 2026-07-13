@@ -4,18 +4,24 @@ import type { ComponentProps } from "react";
 import { ColorValue, Image, View } from "react-native";
 import { useUniwind } from "uniwind";
 import { useTranslation } from "../../hooks/useTranslation";
-import { useIsSearchOpen } from "../../hooks/useDashboardState";
 import { authClient } from "../lib/auth-client";
 
 type IoniconName = ComponentProps<typeof Ionicons>["name"];
 
-const TabIcon = ({ name, color, size = 28 }: { name: IoniconName; color: ColorValue; size?: number }) => {
+const TabIcon = ({
+  name,
+  color,
+  size = 28,
+}: {
+  name: IoniconName;
+  color: ColorValue;
+  size?: number;
+}) => {
   return <Ionicons name={name} size={size} color={color} />;
 };
 
 const TabsLayout = () => {
   const { t } = useTranslation();
-  const [, setIsSearchOpen] = useIsSearchOpen();
   const { data: session } = authClient.useSession();
   const { theme } = useUniwind();
   const isDark = theme === "dark";
@@ -47,12 +53,6 @@ const TabsLayout = () => {
           title: t("navbar.add"),
           tabBarIcon: ({ color }) => <TabIcon name="add-circle" color={color} />,
         }}
-        listeners={() => ({
-          tabPress: (e) => {
-            e.preventDefault();
-            setIsSearchOpen(true);
-          },
-        })}
       />
       <Tabs.Screen
         name="dashboard"
@@ -66,7 +66,9 @@ const TabsLayout = () => {
         options={{
           title: t("navbar.profile"),
           tabBarIcon: ({ focused }) => {
-            const displayImage = userImage || "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y";
+            const displayImage =
+              userImage ||
+              "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y";
             return (
               <View
                 className={`w-8 h-8 rounded-full overflow-hidden border-2 ${
