@@ -1,7 +1,7 @@
 import React from "react";
 import { View, TextInput, ScrollView, ActivityIndicator, Pressable } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import { Typography, Button, Skeleton } from "heroui-native";
+import { Typography, Skeleton } from "heroui-native";
 import { FoodClass } from "@/types/Types";
 import { MACRO_TAILWIND_THEME, MacroType } from "@/utils/MacrosHelper";
 import ImageFromURL from "../common/ImageFromURL";
@@ -123,21 +123,23 @@ const ManualSearchModeView = ({
             </Typography.Paragraph>
           </View>
         ) : foodOptions && foodOptions.length > 0 ? (
-          foodOptions.map((foodItem, index) => (
-            <Pressable
-              key={foodItem.id || foodItem._id || `food-${index}`}
-              onPress={() => handleFoodSelect(foodItem, index)}
-              className="border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 active:bg-zinc-50 dark:active:bg-zinc-800 p-3 rounded-2xl flex-row gap-3 items-center"
-              style={{ borderCurve: "continuous" }}
-            >
-              <ImageFromURL
-                url={foodItem.imgUrl}
-                macroName={foodItem.originalName || foodItem.name}
-                width={64}
-                height={64}
-              />
-              <View className="flex-1 gap-1">
-                <Typography.Heading
+          foodOptions.map((foodItem, index) => {
+            const castedItem = foodItem as FoodClass & { originalName?: string };
+            return (
+              <Pressable
+                key={castedItem.id || castedItem._id || `food-${index}`}
+                onPress={() => handleFoodSelect(castedItem, index)}
+                className="border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 active:bg-zinc-50 dark:active:bg-zinc-800 p-3 rounded-2xl flex-row gap-3 items-center"
+                style={{ borderCurve: "continuous" }}
+              >
+                <ImageFromURL
+                  url={castedItem.imgUrl}
+                  macroName={castedItem.originalName || castedItem.name}
+                  width={64}
+                  height={64}
+                />
+                <View className="flex-1 gap-1">
+                  <Typography.Heading
                   type="h4"
                   className="text-sm font-bold text-zinc-950 dark:text-white leading-4"
                   numberOfLines={1}
@@ -174,7 +176,8 @@ const ManualSearchModeView = ({
                 </View>
               </View>
             </Pressable>
-          ))
+          );
+        })
         ) : (
           <View className="py-8 items-center gap-3">
             <View className="w-12 h-12 bg-blue-50 dark:bg-blue-950/20 rounded-full items-center justify-center">

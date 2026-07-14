@@ -1,7 +1,6 @@
 import React from "react";
 import { View } from "react-native";
 import { Dialog, Typography, Button } from "heroui-native";
-import { GestureDetector } from "react-native-gesture-handler";
 
 import FoodRecordModal from "../components/dashboard/FoodRecordModal";
 import useAddRecord from "@/hooks/useAddRecord";
@@ -22,7 +21,6 @@ const AddRecordScreen = () => {
     setIsRecordModalOpen,
     isNotFoundOpen,
     setIsNotFoundOpen,
-    swipeGesture,
     foodOptions,
     debouncedSearchTerm,
     isScanningProduct,
@@ -40,43 +38,39 @@ const AddRecordScreen = () => {
 
   return (
     <>
-      <GestureDetector gesture={swipeGesture}>
-        <View className="flex-grow flex-1 bg-zinc-50 dark:bg-zinc-950 px-4" style={{ paddingTop }}>
-          {searchMode === "select" && (
-            <SelectModeView onSelectModeChange={setSearchMode} t={t} />
-          )}
+      <View className="flex-grow flex-1 bg-zinc-50 dark:bg-zinc-950 px-4" style={{ paddingTop }}>
+        {searchMode === "select" && <SelectModeView onSelectModeChange={setSearchMode} t={t} />}
 
-          {searchMode === "manual" && (
-            <ManualSearchModeView
-              onSelectModeChange={setSearchMode}
-              t={t}
-              isDark={isDark}
-              searchTerm={searchTerm}
-              setSearchTerm={setSearchTerm}
-              showSkeleton={showSkeleton}
-              handleClear={handleClear}
-              foodOptions={foodOptions}
-              error={error}
-              refetch={refetch}
-              debouncedSearchTerm={debouncedSearchTerm}
-              handleFoodSelect={handleFoodSelect}
-              getMacroLabel={getMacroLabel}
-            />
-          )}
+        {searchMode === "manual" && (
+          <ManualSearchModeView
+            onSelectModeChange={setSearchMode}
+            t={t}
+            isDark={isDark}
+            searchTerm={searchTerm}
+            setSearchTerm={setSearchTerm}
+            showSkeleton={showSkeleton}
+            handleClear={handleClear}
+            foodOptions={foodOptions}
+            error={error}
+            refetch={refetch}
+            debouncedSearchTerm={debouncedSearchTerm}
+            handleFoodSelect={handleFoodSelect}
+            getMacroLabel={getMacroLabel}
+          />
+        )}
 
-          {searchMode === "scanner" && (
-            <ScannerModeView
-              onSelectModeChange={setSearchMode}
-              t={t}
-              isDark={isDark}
-              isRecordModalOpen={isRecordModalOpen}
-              isNotFoundOpen={isNotFoundOpen}
-              handleScan={handleScan}
-              isScanningProduct={isScanningProduct}
-            />
-          )}
-        </View>
-      </GestureDetector>
+        {searchMode === "scanner" && (
+          <ScannerModeView
+            onSelectModeChange={setSearchMode}
+            t={t}
+            isDark={isDark}
+            isRecordModalOpen={isRecordModalOpen}
+            isNotFoundOpen={isNotFoundOpen}
+            handleScan={handleScan}
+            isScanningProduct={isScanningProduct}
+          />
+        )}
+      </View>
 
       <FoodRecordModal
         key={selectedFood ? `new-${selectedFood.id}-${activeTimeFrame}` : "new-none"}
@@ -94,7 +88,9 @@ const AddRecordScreen = () => {
       <Dialog isOpen={isNotFoundOpen} onOpenChange={setIsNotFoundOpen}>
         <Dialog.Portal>
           <Dialog.Overlay className="bg-black/50" />
-          <Dialog.Content className={`w-full max-w-sm bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-3xl p-6 shadow-xl gap-4 ${isDark ? "dark" : ""}`}>
+          <Dialog.Content
+            className={`w-full max-w-sm bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-3xl p-6 shadow-xl gap-4 ${isDark ? "dark" : ""}`}
+          >
             <View className="flex-col gap-1 items-start">
               <Typography.Heading type="h3" className="font-bold text-zinc-900 dark:text-white">
                 {t("modalBarcodeScan.addNewFood")}
