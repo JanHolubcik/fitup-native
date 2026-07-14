@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { Stack, useRouter, useSegments } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { HeroUINativeProvider } from "heroui-native";
@@ -49,37 +49,48 @@ const AuthProtectedLayout = () => {
   const { data: session, isPending } = authClient.useSession();
   const segments = useSegments();
   const router = useRouter();
-  useEffect(() => {
-    if (isPending) return;
 
-    const stringSegments = segments as string[];
-    const inAuthGroup = stringSegments[0] === "(tabs)";
-    const inLogin = stringSegments[0] === "login";
-    const inOnboarding = stringSegments[0] === "onboarding";
+  const stringSegments = segments as string[];
+  const firstSegment = stringSegments[0];
+
+  // Derive whether the current route matches where the user should be.
+  const isRouteReady = useMemo(() => {
+    if (isPending) return false;
 
     if (!session) {
-      if (inAuthGroup || inOnboarding) {
-        // Redirect to the login screen if not authenticated
-        router.replace("/login");
-      }
+      // Not logged in — ready only if already on login or legal pages
+      return firstSegment === "login" || firstSegment === "privacy" || firstSegment === "terms";
+    }
+
+    const onboardingIncomplete = !session.user.weight && !session.user.height;
+    if (onboardingIncomplete) {
+      return firstSegment === "onboarding";
+    }
+
+    // Logged in with complete profile — ready if on tabs or legal pages
+    return firstSegment === "(tabs)" || firstSegment === "privacy" || firstSegment === "terms";
+  }, [isPending, session, firstSegment]);
+
+  useEffect(() => {
+    if (isPending || isRouteReady) return;
+
+    if (!session) {
+      router.replace("/login");
     } else {
       const onboardingIncomplete = !session.user.weight && !session.user.height;
       if (onboardingIncomplete) {
-        if (!inOnboarding) {
-          router.replace("/onboarding");
-        }
+        router.replace("/onboarding");
       } else {
-        if (inLogin || inOnboarding || stringSegments.length === 0 || stringSegments[0] === "") {
-          router.replace("/(tabs)/dashboard");
-        }
+        router.replace("/(tabs)/dashboard");
       }
     }
-  }, [session, isPending, segments, router]);
+  }, [isPending, isRouteReady, session, router]);
 
-  if (isPending) {
+  // Show spinner until auth resolves AND we're on the correct screen
+  if (!isRouteReady) {
     return (
-      <View className="flex-1 justify-center items-center bg-background">
-        <ActivityIndicator size="large" className="text-primary" />
+      <View className="flex-1 justify-center items-center bg-white dark:bg-zinc-950">
+        <ActivityIndicator size="large" color="#3b82f6" />
       </View>
     );
   }

@@ -103,7 +103,7 @@ const OnboardingScreen = () => {
       }
 
       toast.show({ label: t("buttons.success"), variant: "success" });
-      router.replace("/(tabs)/dashboard");
+      router.replace("/(tabs)/add-record");
     } catch (err) {
       console.error(err);
       toast.show({ label: t("toast.error"), variant: "danger" });
