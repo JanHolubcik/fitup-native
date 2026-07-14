@@ -10,7 +10,6 @@ import { Food, FoodClass } from "@/types/Types";
 import { MacroType } from "@/utils/MacrosHelper";
 import { useActiveTimeFrame } from "@/hooks/useDashboardState";
 import useScanProduct from "@/hooks/useScanProduct";
-import useSwipeNavigation from "@/hooks/useSwipeNavigation";
 
 type SearchMode = "select" | "manual" | "scanner" | "ai";
 
@@ -45,10 +44,6 @@ const useAddRecord = () => {
   const [isNotFoundOpen, setIsNotFoundOpen] = useState(false);
 
   const debouncedSearchTerm = useDebounce(searchTerm, 500, setIsTyping);
-
-  const swipeGesture = useSwipeNavigation({
-    leftTarget: searchMode !== "scanner" ? "/(tabs)/dashboard" : undefined,
-  });
 
   const {
     data: foodOptions,
@@ -146,7 +141,6 @@ const useAddRecord = () => {
     setIsRecordModalOpen,
     isNotFoundOpen,
     setIsNotFoundOpen,
-    swipeGesture,
     foodOptions,
     debouncedSearchTerm,
     isScanningProduct,
