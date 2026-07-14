@@ -52,15 +52,27 @@ const AuthProtectedLayout = () => {
   useEffect(() => {
     if (isPending) return;
 
-    const inAuthGroup = segments[0] === "(tabs)";
-    const inLogin = segments[0] === "login";
+    const stringSegments = segments as string[];
+    const inAuthGroup = stringSegments[0] === "(tabs)";
+    const inLogin = stringSegments[0] === "login";
+    const inOnboarding = stringSegments[0] === "onboarding";
 
-    if (!session && inAuthGroup) {
-      // Redirect to the login screen if not authenticated
-      router.replace("/login");
-    } else if (session && inLogin) {
-      // Redirect to dashboard if authenticated
-      router.replace("/(tabs)/dashboard");
+    if (!session) {
+      if (inAuthGroup || inOnboarding) {
+        // Redirect to the login screen if not authenticated
+        router.replace("/login");
+      }
+    } else {
+      const onboardingIncomplete = !session.user.weight && !session.user.height;
+      if (onboardingIncomplete) {
+        if (!inOnboarding) {
+          router.replace("/onboarding");
+        }
+      } else {
+        if (inLogin || inOnboarding || stringSegments.length === 0 || stringSegments[0] === "") {
+          router.replace("/(tabs)/dashboard");
+        }
+      }
     }
   }, [session, isPending, segments, router]);
 
@@ -75,6 +87,7 @@ const AuthProtectedLayout = () => {
   return (
     <Stack screenOptions={{ headerShown: false }}>
       <Stack.Screen name="login" />
+      <Stack.Screen name="onboarding" />
       <Stack.Screen name="(tabs)" />
       <Stack.Screen name="privacy" />
       <Stack.Screen name="terms" />
