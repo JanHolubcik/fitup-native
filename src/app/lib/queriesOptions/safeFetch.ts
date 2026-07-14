@@ -4,11 +4,7 @@ export const safeFetch = async <T>(
   requestFn: () => Promise<Response>,
   fallbackErrorMessage: string = "Request failed",
 ): Promise<T> => {
-  if (
-    typeof window !== "undefined" &&
-    typeof navigator !== "undefined" &&
-    navigator.onLine === false
-  ) {
+  if (typeof window !== "undefined" && !navigator.onLine) {
     throw new Error("OFFLINE");
   }
 
@@ -32,8 +28,7 @@ export const safeFetch = async <T>(
   } catch (error) {
     if (
       error instanceof TypeError &&
-      (error.message.toLowerCase().includes("failed to fetch") ||
-        error.message.toLowerCase().includes("network request failed"))
+      error.message.toLowerCase().includes("failed to fetch")
     ) {
       throw new Error("OFFLINE");
     }

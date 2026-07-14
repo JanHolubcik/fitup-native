@@ -32,8 +32,14 @@ export const updateUserSchema = z.object({
 
 export const onboardingSchema = z.object({
   goal: z.enum(["loseWeight", "maintainWeight", "gainWeight"]),
-  weight: z.coerce.number().min(50).max(300),
-  height: z.coerce.number().min(50).max(300),
+  weight: z.coerce
+    .number()
+    .min(50, "validation.weightMin")
+    .max(300, "validation.weightMax"),
+  height: z.coerce
+    .number()
+    .min(50, "validation.heightMin")
+    .max(300, "validation.heightMax"),
   activityLevel: z.enum([
     "sedentary",
     "lightlyActive",
@@ -41,3 +47,11 @@ export const onboardingSchema = z.object({
     "highlyActive",
   ]),
 });
+
+export const adminUpdateUserSchema = z.object({
+  userId: z.string().min(1, "User ID is required"),
+  name: z.string().min(1, "Name is required"),
+  email: z.string().email("Invalid email address"),
+  role: z.enum(["user", "admin"]),
+});
+
