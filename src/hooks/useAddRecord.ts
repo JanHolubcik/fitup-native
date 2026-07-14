@@ -1,15 +1,17 @@
 import { useState } from "react";
 import { Platform } from "react-native";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useMutation } from "@tanstack/react-query";
 import { useLocalSearchParams } from "expo-router";
 import { useTranslation } from "@/hooks/useTranslation";
 import { useDebounce } from "@/utils/FunctionsHelper";
 import { useUniwind } from "uniwind";
 import { getSearchedFoodOptions } from "@/app/lib/queriesOptions/GetSearchedFoodOptions";
-import { Food, FoodClass } from "@/types/Types";
+import { Food, FoodClass, AIFoodAnalysis } from "@/types/Types";
 import { MacroType } from "@/utils/MacrosHelper";
 import { useActiveTimeFrame } from "@/hooks/useDashboardState";
 import useScanProduct from "@/hooks/useScanProduct";
+import { FoodImageAIOptions } from "@/app/lib/queriesOptions/FoodImageAIOptions";
+import { useToast } from "heroui-native";
 
 type SearchMode = "select" | "manual" | "scanner" | "ai";
 
@@ -19,10 +21,11 @@ const useAddRecord = () => {
   const isDark = theme === "dark";
   const [activeTimeFrame] = useActiveTimeFrame();
   const { mode } = useLocalSearchParams<{ mode?: string }>();
+  const { toast } = useToast();
 
   const [prevMode, setPrevMode] = useState<string | undefined>(mode);
   const [searchMode, setSearchMode] = useState<SearchMode>(() => {
-    if (mode === "scanner" || mode === "manual" || mode === "select") {
+    if (mode === "scanner" || mode === "manual" || mode === "select" || mode === "ai") {
       return mode;
     }
     return "select";
@@ -30,7 +33,7 @@ const useAddRecord = () => {
 
   if (mode !== prevMode) {
     setPrevMode(mode);
-    if (mode === "scanner" || mode === "manual" || mode === "select") {
+    if (mode === "scanner" || mode === "manual" || mode === "select" || mode === "ai") {
       setSearchMode(mode);
     } else {
       setSearchMode("select");
@@ -42,6 +45,7 @@ const useAddRecord = () => {
   const [selectedFood, setSelectedFood] = useState<Food | null>(null);
   const [isRecordModalOpen, setIsRecordModalOpen] = useState(false);
   const [isNotFoundOpen, setIsNotFoundOpen] = useState(false);
+  const [pendingLocalImageUri, setPendingLocalImageUri] = useState<string | null>(null);
 
   const debouncedSearchTerm = useDebounce(searchTerm, 500, setIsTyping);
 
@@ -59,6 +63,53 @@ const useAddRecord = () => {
   const { mutate: scanProduct, isPending: isScanningProduct } = useScanProduct(() => {
     setIsNotFoundOpen(true);
   });
+
+  const { mutate: analyzeImage, isPending: isAnalyzingImage } = useMutation<
+    AIFoodAnalysis,
+    Error,
+    string
+  >({
+    mutationKey: ["foodImageAI"],
+    mutationFn: FoodImageAIOptions(locale).mutationFn,
+    onSuccess: (data) => {
+      if (data && data.isFood) {
+        const weight = data.ProductWeight || 100;
+        const parsedFood: Food = {
+          id: Date.now(),
+          name: data.name || t("aiFoodScan.title"),
+          originalName: data.name || t("aiFoodScan.title"),
+          amount: `${weight}`,
+          calories: data.calories || data.calories_per_100g || 0,
+          fat: data.fat || 0,
+          protein: data.protein || 0,
+          sugar: data.sugar || 0,
+          carbohydrates: data.carbohydrates || 0,
+          fiber: data.fiber || 0,
+          salt: data.salt || 0,
+          imgUrl: pendingLocalImageUri || undefined,
+        };
+        setSelectedFood(parsedFood);
+        setIsRecordModalOpen(true);
+      } else {
+        toast.show({
+          label: data?.error || t("aiFoodScan.notFood"),
+          variant: "danger",
+        });
+      }
+    },
+    onError: (err: Error) => {
+      toast.show({
+        label: err.message || t("aiFoodScan.failed"),
+        variant: "danger",
+      });
+    },
+  });
+
+  const handleAnalyzeImage = (base64: string, localUri: string) => {
+    setPendingLocalImageUri(localUri);
+    analyzeImage(base64);
+  };
+
 
   const showSkeleton = isLoading || isTyping;
   const paddingTop = Platform.OS === "ios" ? 60 : 40;
@@ -154,7 +205,10 @@ const useAddRecord = () => {
     activeTimeFrame,
     error,
     refetch,
+    analyzeImage: handleAnalyzeImage,
+    isAnalyzingImage,
   };
 };
 
 export default useAddRecord;
+

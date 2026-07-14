@@ -8,6 +8,8 @@ import { Food, TimeOfDay } from "@/types/Types";
 import { useTranslation } from "@/hooks/useTranslation";
 import { MACRO_TAILWIND_THEME, MacroArray } from "@/utils/MacrosHelper";
 import ImageFromURL from "../common/ImageFromURL";
+import { uploadImage } from "@/app/lib/api-client";
+
 
 type FoodRecordModalProps = {
   isOpen: boolean;
@@ -57,9 +59,20 @@ const FoodRecordModal = ({
         await updateFood(food, grams, timeOfDay);
         onOpenChange(false);
       } else {
+        let finalImgUrl = food.imgUrl;
+        if (food.imgUrl && (food.imgUrl.startsWith("file://") || food.imgUrl.startsWith("content://"))) {
+          try {
+            finalImgUrl = await uploadImage(food.imgUrl);
+          } catch (uploadErr) {
+            console.error("Failed to upload food image, proceeding without image:", uploadErr);
+            finalImgUrl = undefined;
+          }
+        }
+
         const updatedFood: Food = {
           ...food,
           amount: grams.toString(),
+          imgUrl: finalImgUrl,
         };
         await addToFoodObject(updatedFood, timeOfDay);
         onOpenChange(false);
@@ -73,6 +86,7 @@ const FoodRecordModal = ({
       setIsSaving(false);
     }
   };
+
 
   const getMacroLabel = (key: string) => {
     switch (key) {

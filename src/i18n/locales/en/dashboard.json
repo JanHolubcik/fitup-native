@@ -265,5 +265,15 @@
     "failedToLoadActivity": "Failed to load activity log.",
     "failedToLoadAll": "Failed to load food and activity logs.",
     "tryAgain": "Try Again"
+  },
+  "aiFoodScan": {
+    "notFood": "No food was recognized in this image. Please try again.",
+    "failed": "An error occurred during image analysis. Please try again.",
+    "takePhoto": "Take Photo",
+    "chooseGallery": "Choose from Gallery",
+    "title": "AI Food Detection",
+    "subtitle": "Take a photo or choose from library to let AI recognize the food and its macros automatically.",
+    "analyzing": "Analyzing with Gemini..."
   }
 }
+

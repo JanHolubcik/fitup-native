@@ -7,6 +7,7 @@ import useAddRecord from "@/hooks/useAddRecord";
 import SelectModeView from "../components/add-record/SelectModeView";
 import ManualSearchModeView from "../components/add-record/ManualSearchModeView";
 import ScannerModeView from "../components/add-record/ScannerModeView";
+import AIModeView from "../components/add-record/AIModeView";
 
 const AddRecordScreen = () => {
   const {
@@ -34,6 +35,8 @@ const AddRecordScreen = () => {
     activeTimeFrame,
     error,
     refetch,
+    analyzeImage,
+    isAnalyzingImage,
   } = useAddRecord();
 
   return (
@@ -70,7 +73,18 @@ const AddRecordScreen = () => {
             isScanningProduct={isScanningProduct}
           />
         )}
+
+        {searchMode === "ai" && (
+          <AIModeView
+            onSelectModeChange={setSearchMode}
+            t={t}
+            isDark={isDark}
+            onAnalyze={analyzeImage}
+            isAnalyzing={isAnalyzingImage}
+          />
+        )}
       </View>
+
 
       <FoodRecordModal
         key={selectedFood ? `new-${selectedFood.id}-${activeTimeFrame}` : "new-none"}

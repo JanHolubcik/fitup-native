@@ -58,8 +58,8 @@ const SelectModeView = ({ onSelectModeChange, t }: SelectModeViewProps) => {
         </Pressable>
 
         <Pressable
-          disabled
-          className="bg-zinc-100/50 dark:bg-zinc-900/40 border border-zinc-150 dark:border-zinc-900 p-5 rounded-3xl flex-row items-center gap-4 opacity-60"
+          onPress={() => onSelectModeChange("ai")}
+          className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 p-5 rounded-3xl flex-row items-center gap-4 active:bg-zinc-50 dark:active:bg-zinc-800"
           style={{ borderCurve: "continuous" }}
         >
           <View className="w-12 h-12 bg-purple-50 dark:bg-purple-950/20 rounded-2xl items-center justify-center">
@@ -72,7 +72,7 @@ const SelectModeView = ({ onSelectModeChange, t }: SelectModeViewProps) => {
               </Typography.Heading>
               <View className="bg-purple-500/20 px-1.5 py-0.5 rounded-md">
                 <Typography.Paragraph className="text-[8px] font-bold text-purple-600 dark:text-purple-400 uppercase">
-                  Later
+                  Gemini
                 </Typography.Paragraph>
               </View>
             </View>
@@ -81,6 +81,7 @@ const SelectModeView = ({ onSelectModeChange, t }: SelectModeViewProps) => {
             </Typography.Paragraph>
           </View>
         </Pressable>
+
       </View>
     </View>
   );
