@@ -13,15 +13,15 @@ import { Food, FoodClass, TimeOfDay } from "@/types/Types";
 import { MACRO_TAILWIND_THEME, MacroType } from "@/utils/MacrosHelper";
 import ImageFromURL from "../common/ImageFromURL";
 import CardError from "../common/CardError";
-import FoodRecordModal from "./FoodRecordModal";
+import FoodRecordDialog from "./FoodRecordDialog";
 
-type ModalFindFoodProps = {
+type DialogFindFoodProps = {
   isOpen: boolean;
   onOpenChange: (open: boolean) => void;
   timeOfDay?: TimeOfDay;
 };
 
-const ModalFindFood = ({ isOpen, onOpenChange, timeOfDay = "breakfast" }: ModalFindFoodProps) => {
+const DialogFindFood = ({ isOpen, onOpenChange, timeOfDay = "breakfast" }: DialogFindFoodProps) => {
   const { t, locale } = useTranslation("dashboard");
   const { theme } = useUniwind();
   const isDark = theme === "dark";
@@ -279,7 +279,7 @@ const ModalFindFood = ({ isOpen, onOpenChange, timeOfDay = "breakfast" }: ModalF
         </Dialog.Portal>
       </Dialog>
 
-      <FoodRecordModal
+      <FoodRecordDialog
         key={selectedFood ? `new-${selectedFood.id}-${timeOfDay}` : "new-none"}
         isOpen={isRecordModalOpen}
         onOpenChange={setIsRecordModalOpen}
@@ -292,4 +292,4 @@ const ModalFindFood = ({ isOpen, onOpenChange, timeOfDay = "breakfast" }: ModalF
   );
 };
 
-export default ModalFindFood;
+export default DialogFindFood;

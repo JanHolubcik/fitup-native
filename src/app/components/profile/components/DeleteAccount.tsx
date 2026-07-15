@@ -5,7 +5,7 @@ import { useRouter } from "expo-router";
 import { useTranslation } from "../../../../hooks/useTranslation";
 import { authClient } from "../../../lib/auth-client";
 import CardUniversal from "../../common/CardUniversal";
-import YesNoModal from "../../common/YesNoModal";
+import YesNoDialog from "../../common/YesNoDialog";
 
 const DeleteAccount = () => {
   const { t } = useTranslation("profile");
@@ -77,7 +77,7 @@ const DeleteAccount = () => {
         </CardUniversal.Body>
       </CardUniversal>
 
-      <YesNoModal
+      <YesNoDialog
         isOpen={isModalOpen}
         onOpenChange={setIsModalOpen}
         onConfirm={handleDeleteAccount}

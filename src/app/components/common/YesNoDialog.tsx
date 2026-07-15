@@ -2,7 +2,7 @@ import React from "react";
 import { Modal, View, Pressable, StyleSheet } from "react-native";
 import { Button, Typography } from "heroui-native";
 
-type YesNoModalProps = {
+type YesNoDialogProps = {
   isOpen: boolean;
   onOpenChange: (open: boolean) => void;
   onConfirm: () => void;
@@ -14,7 +14,7 @@ type YesNoModalProps = {
   isLoading?: boolean;
 };
 
-const YesNoModal = ({
+const YesNoDialog = ({
   isOpen,
   onOpenChange,
   onConfirm,
@@ -24,7 +24,7 @@ const YesNoModal = ({
   cancelText,
   confirmColor = "primary",
   isLoading = false,
-}: YesNoModalProps) => {
+}: YesNoDialogProps) => {
   return (
     <Modal
       transparent
@@ -78,4 +78,4 @@ const YesNoModal = ({
   );
 };
 
-export default YesNoModal;
+export default YesNoDialog;

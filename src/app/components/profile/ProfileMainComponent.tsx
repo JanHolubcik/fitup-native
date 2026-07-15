@@ -10,7 +10,7 @@ import { ChangePassword } from "./components/ChangePassword";
 import { useTranslation } from "../../../hooks/useTranslation";
 import BiometricAndGoals from "./components/BiometricAndGoals";
 import DeleteAccount from "./components/DeleteAccount";
-import YesNoModal from "../common/YesNoModal";
+import YesNoDialog from "../common/YesNoDialog";
 
 const ProfileMainComponent = () => {
   const { t } = useTranslation("profile");
@@ -61,7 +61,7 @@ const ProfileMainComponent = () => {
         </View>
       </ScrollView>
 
-      <YesNoModal
+      <YesNoDialog
         isOpen={isSignOutModalOpen}
         onOpenChange={setIsSignOutModalOpen}
         onConfirm={handleSignOut}

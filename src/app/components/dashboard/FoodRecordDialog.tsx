@@ -11,7 +11,7 @@ import ImageFromURL from "../common/ImageFromURL";
 import { uploadImage } from "@/app/lib/api-client";
 
 
-type FoodRecordModalProps = {
+type FoodRecordDialogProps = {
   isOpen: boolean;
   onOpenChange: (isOpen: boolean) => void;
   food: Food | null | undefined;
@@ -20,14 +20,14 @@ type FoodRecordModalProps = {
   onCloseAll?: () => void;
 };
 
-const FoodRecordModal = ({
+const FoodRecordDialog = ({
   isOpen,
   onOpenChange,
   food,
   timeOfDay,
   mode,
   onCloseAll,
-}: FoodRecordModalProps) => {
+}: FoodRecordDialogProps) => {
   const [grams, setGrams] = useState<number>(() => {
     return food ? parseFloat(food.amount) || 100 : 100;
   });
@@ -226,4 +226,4 @@ const FoodRecordModal = ({
   );
 };
 
-export default FoodRecordModal;
+export default FoodRecordDialog;
