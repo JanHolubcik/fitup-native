@@ -4,10 +4,10 @@ import { Separator, Typography, Button, TextField, Label, Input, useToast } from
 import { useUniwind } from "uniwind";
 import { Formik } from "formik";
 import { useTranslation } from "../../../../hooks/useTranslation";
-import { authClient } from "../../../lib/auth-client";
+import { authClient } from "../../../../lib/auth-client";
 import CardUniversal from "../../common/CardUniversal";
 
-export const ChangePassword = () => {
+const ChangePassword = () => {
   const { t } = useTranslation("profile");
   const { toast } = useToast();
   const { theme } = useUniwind();
@@ -76,7 +76,16 @@ export const ChangePassword = () => {
           setSubmitting(false);
         }}
       >
-        {({ values, handleChange, handleBlur, handleSubmit, isSubmitting, errors, touched, isValid }) => (
+        {({
+          values,
+          handleChange,
+          handleBlur,
+          handleSubmit,
+          isSubmitting,
+          errors,
+          touched,
+          isValid,
+        }) => (
           <CardUniversal.Body className="px-6 py-6 gap-4">
             <View>
               <TextField isRequired isDisabled={isSubmitting}>
@@ -174,3 +183,4 @@ export const ChangePassword = () => {
   );
 };
 
+export default ChangePassword;

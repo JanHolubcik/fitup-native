@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { authClient } from "../app/lib/auth-client";
+import { authClient } from "../lib/auth-client";
 import useYourIntakeOperations from "./useYourIntakeOperations";
 import useActivityOperations from "./useActivityOperations";
 import {
@@ -21,10 +21,8 @@ const useTodayMacros = () => {
   const { data } = authClient.useSession();
   const user = data?.user;
 
-  const activityKey = (user?.activityLevel ||
-    "lightlyActive") as keyof typeof ACTIVITY_MULTIPLIERS;
-  const goalKey = (user?.goal ||
-    "maintainWeight") as keyof typeof GOAL_MULTIPLIERS;
+  const activityKey = (user?.activityLevel || "lightlyActive") as keyof typeof ACTIVITY_MULTIPLIERS;
+  const goalKey = (user?.goal || "maintainWeight") as keyof typeof GOAL_MULTIPLIERS;
 
   const burnedCalories = useMemo(() => {
     return savedActivities
@@ -38,7 +36,7 @@ const useTodayMacros = () => {
           user.weight ? user.weight : 0,
           user.height ? user.height : 0,
           ACTIVITY_MULTIPLIERS[activityKey],
-          GOAL_MULTIPLIERS[goalKey],
+          GOAL_MULTIPLIERS[goalKey]
         )
       : {
           calories: 0,
@@ -51,7 +49,7 @@ const useTodayMacros = () => {
         };
 
     return adjustMacrosWithBurnedCalories(baseline, burnedCalories);
-  }, [user, activityKey, goalKey, burnedCalories]);
+  }, [user?.weight, user?.height, activityKey, goalKey, burnedCalories]);
 
   const calculatedMacros = useMemo(() => {
     if (savedFood) {
@@ -66,9 +64,7 @@ const useTodayMacros = () => {
       };
 
       timeOfDay.forEach((value) => {
-        const timeInDaySavedMacro = savedFood[
-          value as TimeOfDay
-        ].reduce(
+        const timeInDaySavedMacro = savedFood[value as TimeOfDay].reduce(
           (acc: macros, item: Food) => {
             acc.calories += item.calories;
             acc.carbohydrates += item.carbohydrates;
@@ -87,7 +83,7 @@ const useTodayMacros = () => {
             protein: 0,
             salt: 0,
             sugar: 0,
-          },
+          }
         );
 
         Object.keys(savedMacros).forEach((key) => {

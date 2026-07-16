@@ -2,15 +2,16 @@ import React, { useState } from "react";
 import { View, ScrollView } from "react-native";
 import { useRouter } from "expo-router";
 import { Button } from "heroui-native";
-import { authClient } from "../../lib/auth-client";
-import { ProfileSkeleton } from "./components/ProfileSkeleton";
-import { LanguageAndThemeCard } from "./components/LanguageAndThemeCard";
-import { AccountDetails } from "./components/AccountDetails";
-import { ChangePassword } from "./components/ChangePassword";
+import { authClient } from "../../../lib/auth-client";
+import ProfileSkeleton from "./components/ProfileSkeleton";
+import LanguageAndThemeCard from "./components/LanguageAndThemeCard";
+
+import ChangePassword from "./components/ChangePassword";
 import { useTranslation } from "../../../hooks/useTranslation";
 import BiometricAndGoals from "./components/BiometricAndGoals";
 import DeleteAccount from "./components/DeleteAccount";
-import YesNoModal from "../common/YesNoModal";
+import YesNoDialog from "../common/YesNoDialog";
+import AccountDetails from "./components/AccountDetails/AccountDetails";
 
 const ProfileMainComponent = () => {
   const { t } = useTranslation("profile");
@@ -61,7 +62,7 @@ const ProfileMainComponent = () => {
         </View>
       </ScrollView>
 
-      <YesNoModal
+      <YesNoDialog
         isOpen={isSignOutModalOpen}
         onOpenChange={setIsSignOutModalOpen}
         onConfirm={handleSignOut}

@@ -2,7 +2,7 @@ import React from "react";
 import { View } from "react-native";
 import { Dialog, Typography, Button } from "heroui-native";
 
-import FoodRecordModal from "../components/dashboard/FoodRecordModal";
+import FoodRecordDialog from "../components/dashboard/FoodRecordDialog";
 import useAddRecord from "@/hooks/useAddRecord";
 import SelectModeView from "../components/add-record/SelectModeView";
 import ManualSearchModeView from "../components/add-record/ManualSearchModeView";
@@ -86,7 +86,7 @@ const AddRecordScreen = () => {
       </View>
 
 
-      <FoodRecordModal
+      <FoodRecordDialog
         key={selectedFood ? `new-${selectedFood.id}-${activeTimeFrame}` : "new-none"}
         isOpen={isRecordModalOpen}
         onOpenChange={setIsRecordModalOpen}

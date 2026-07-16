@@ -10,7 +10,7 @@ import useYourIntakeOperations from "@/hooks/useYourIntakeOperations";
 import { useIsSearchOpen, useActiveTimeFrame } from "@/hooks/useDashboardState";
 import { useUniwind } from "uniwind";
 import ImageFromURL from "../common/ImageFromURL";
-import FoodRecordModal from "./FoodRecordModal";
+import FoodRecordDialog from "./FoodRecordDialog";
 
 type TimeFrameSmallCardProps = {
   timeFrame: TimeOfDay;
@@ -100,7 +100,7 @@ const TimeFrameSmallCard = ({ timeFrame, foodItems }: TimeFrameSmallCardProps) =
         <Ionicons name="add-circle" size={20} color={isDark ? "#006fee" : "#93c5fd"} />
       </Pressable>
 
-      <FoodRecordModal
+      <FoodRecordDialog
         key={selectedFood ? `edit-${selectedFood.id}` : "edit-none"}
         mode="edit"
         isOpen={isEditOpen}

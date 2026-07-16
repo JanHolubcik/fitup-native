@@ -2,11 +2,10 @@ import React from "react";
 import { View, ScrollView } from "react-native";
 import { Card, Skeleton, Separator } from "heroui-native";
 
-export const ProfileSkeleton = () => {
+const ProfileSkeleton = () => {
   return (
     <ScrollView className="flex-1 bg-background" contentContainerStyle={{ padding: 16 }}>
       <View className="w-full max-w-lg mx-auto gap-6">
-        {/* 1. Language & Theme Card Skeleton */}
         <Card className="shadow-md border border-border">
           <Card.Header className="pb-2 pt-6 px-6">
             <Skeleton className="h-6 w-48 rounded-lg bg-default-soft" />
@@ -30,7 +29,6 @@ export const ProfileSkeleton = () => {
           </Card.Body>
         </Card>
 
-        {/* 2. Account Details Card Skeleton */}
         <Card className="shadow-md border border-border">
           <Card.Header className="pb-2 pt-6 px-6 gap-2">
             <Skeleton className="h-6 w-36 rounded-lg bg-default-soft" />
@@ -53,7 +51,6 @@ export const ProfileSkeleton = () => {
           </Card.Body>
         </Card>
 
-        {/* 3. Change Password Card Skeleton */}
         <Card className="shadow-md border border-border">
           <Card.Header className="pb-2 pt-6 px-6 gap-2">
             <Skeleton className="h-6 w-40 rounded-lg bg-default-soft" />
@@ -111,3 +108,6 @@ export const ProfileSkeleton = () => {
     </ScrollView>
   );
 };
+
+export default ProfileSkeleton;
+

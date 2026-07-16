@@ -4,10 +4,10 @@ import { Button, Typography, TextField, Label } from "heroui-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useTranslation } from "../../../hooks/useTranslation";
 import { useUniwind } from "uniwind";
-import { authClient } from "../../lib/auth-client";
+import { authClient } from "../../../lib/auth-client";
 import { router } from "expo-router";
 import { useFormik } from "formik";
-import { signupSchema } from "../../lib/validationShemas/signupValidationSchema";
+import { signupSchema } from "../../../lib/validationShemas/signupValidationSchema";
 
 type RegisterFormProps = {
   onLoadingChange: (loading: boolean) => void;
@@ -439,13 +439,13 @@ const RegisterForm = ({ onLoadingChange, disabled }: RegisterFormProps) => {
             : "0 4px 14px rgba(59, 130, 246, 0.25)",
         }}
       >
-        <Button.Label className="text-white font-bold text-base">
-          {formik.isSubmitting ? (
-            <ActivityIndicator color="white" size="small" />
-          ) : (
-            t("signUpButton")
-          )}
-        </Button.Label>
+        {formik.isSubmitting ? (
+          <ActivityIndicator color="white" size="small" />
+        ) : (
+          <Button.Label className="text-white font-bold text-base">
+            {t("signUpButton")}
+          </Button.Label>
+        )}
       </Button>
     </View>
   );

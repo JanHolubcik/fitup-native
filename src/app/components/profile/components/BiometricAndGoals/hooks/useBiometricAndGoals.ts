@@ -1,6 +1,6 @@
 import { useTranslation } from "../../../../../../hooks/useTranslation";
 import { useToast } from "heroui-native";
-import { authClient } from "../../../../../lib/auth-client";
+import { authClient } from "../../../../../../lib/auth-client";
 
 const useBiometricAndGoals = () => {
   const { t } = useTranslation("profile");

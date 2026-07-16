@@ -5,12 +5,12 @@ import { useLocalSearchParams } from "expo-router";
 import { useTranslation } from "@/hooks/useTranslation";
 import { useDebounce } from "@/utils/FunctionsHelper";
 import { useUniwind } from "uniwind";
-import { getSearchedFoodOptions } from "@/app/lib/queriesOptions/GetSearchedFoodOptions";
+import { getSearchedFoodOptions } from "@/lib/queriesOptions/GetSearchedFoodOptions";
 import { Food, FoodClass, AIFoodAnalysis } from "@/types/Types";
 import { MacroType } from "@/utils/MacrosHelper";
 import { useActiveTimeFrame } from "@/hooks/useDashboardState";
 import useScanProduct from "@/hooks/useScanProduct";
-import { FoodImageAIOptions } from "@/app/lib/queriesOptions/FoodImageAIOptions";
+import { FoodImageAIOptions } from "@/lib/queriesOptions/FoodImageAIOptions";
 import { useToast } from "heroui-native";
 
 type SearchMode = "select" | "manual" | "scanner" | "ai";
@@ -109,7 +109,6 @@ const useAddRecord = () => {
     setPendingLocalImageUri(localUri);
     analyzeImage(base64);
   };
-
 
   const showSkeleton = isLoading || isTyping;
   const paddingTop = Platform.OS === "ios" ? 60 : 40;
@@ -211,4 +210,3 @@ const useAddRecord = () => {
 };
 
 export default useAddRecord;
-

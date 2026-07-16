@@ -5,7 +5,7 @@ import DateSwitcher from "../components/dashboard/DateSwitcher";
 import CalorieCard from "../components/dashboard/CalorieCard";
 import TodayMacros from "../components/dashboard/TodayMacros";
 import AccordionTimeFrame from "../components/dashboard/AccordionTimeFrame";
-import ModalFindFood from "../components/dashboard/ModalFindFood";
+import DialogFindFood from "../components/dashboard/DialogFindFood";
 import { useIsSearchOpen, useActiveTimeFrame } from "@/hooks/useDashboardState";
 import MaterialTopTabs from "../components/common/MaterialTopTabs";
 
@@ -35,7 +35,7 @@ const DashboardTab = () => {
         </ScrollView>
       </View>
 
-      <ModalFindFood
+      <DialogFindFood
         isOpen={isSearchOpen}
         onOpenChange={setIsSearchOpen}
         timeOfDay={activeTimeFrame}
