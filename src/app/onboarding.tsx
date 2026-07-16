@@ -530,13 +530,13 @@ const OnboardingScreen = () => {
                   onPress={() => handleSubmit()}
                   isDisabled={isSubmitting}
                 >
-                  <Button.Label className="text-white text-sm font-bold">
-                    {isSubmitting ? (
-                      <ActivityIndicator size="small" color="#ffffff" />
-                    ) : (
-                      t("buttons.completeSetup")
-                    )}
-                  </Button.Label>
+                  {isSubmitting ? (
+                    <ActivityIndicator size="small" color="#ffffff" />
+                  ) : (
+                    <Button.Label className="text-white text-sm font-bold">
+                      {t("buttons.completeSetup")}
+                    </Button.Label>
+                  )}
                 </Button>
               )}
             </View>

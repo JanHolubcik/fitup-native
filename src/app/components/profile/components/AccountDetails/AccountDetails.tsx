@@ -13,7 +13,7 @@ type AccountDetailsProps = {
   user: User;
 };
 
-export const AccountDetails = ({ user }: AccountDetailsProps) => {
+const AccountDetails = ({ user }: AccountDetailsProps) => {
   const { t } = useTranslation("profile");
 
   const { avatarDisplayUri, handleChangePicture, handleAccountSubmit } = useAccountDetails({
@@ -49,3 +49,6 @@ export const AccountDetails = ({ user }: AccountDetailsProps) => {
     </CardUniversal>
   );
 };
+
+export default AccountDetails;
+

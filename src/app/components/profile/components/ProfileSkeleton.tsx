@@ -2,7 +2,7 @@ import React from "react";
 import { View, ScrollView } from "react-native";
 import { Card, Skeleton, Separator } from "heroui-native";
 
-export const ProfileSkeleton = () => {
+const ProfileSkeleton = () => {
   return (
     <ScrollView className="flex-1 bg-background" contentContainerStyle={{ padding: 16 }}>
       <View className="w-full max-w-lg mx-auto gap-6">
@@ -108,3 +108,6 @@ export const ProfileSkeleton = () => {
     </ScrollView>
   );
 };
+
+export default ProfileSkeleton;
+

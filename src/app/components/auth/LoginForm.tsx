@@ -189,13 +189,13 @@ const LoginForm = ({ onLoadingChange, disabled }: LoginFormProps) => {
             : "0 4px 14px rgba(59, 130, 246, 0.25)",
         }}
       >
-        <Button.Label className="text-white font-bold text-base">
-          {formik.isSubmitting ? (
-            <ActivityIndicator color="white" size="small" />
-          ) : (
-            t("login.signInButton")
-          )}
-        </Button.Label>
+        {formik.isSubmitting ? (
+          <ActivityIndicator color="white" size="small" />
+        ) : (
+          <Button.Label className="text-white font-bold text-base">
+            {t("login.signInButton")}
+          </Button.Label>
+        )}
       </Button>
     </View>
   );

@@ -439,13 +439,13 @@ const RegisterForm = ({ onLoadingChange, disabled }: RegisterFormProps) => {
             : "0 4px 14px rgba(59, 130, 246, 0.25)",
         }}
       >
-        <Button.Label className="text-white font-bold text-base">
-          {formik.isSubmitting ? (
-            <ActivityIndicator color="white" size="small" />
-          ) : (
-            t("signUpButton")
-          )}
-        </Button.Label>
+        {formik.isSubmitting ? (
+          <ActivityIndicator color="white" size="small" />
+        ) : (
+          <Button.Label className="text-white font-bold text-base">
+            {t("signUpButton")}
+          </Button.Label>
+        )}
       </Button>
     </View>
   );

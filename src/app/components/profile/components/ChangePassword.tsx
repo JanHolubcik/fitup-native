@@ -7,7 +7,7 @@ import { useTranslation } from "../../../../hooks/useTranslation";
 import { authClient } from "../../../lib/auth-client";
 import CardUniversal from "../../common/CardUniversal";
 
-export const ChangePassword = () => {
+const ChangePassword = () => {
   const { t } = useTranslation("profile");
   const { toast } = useToast();
   const { theme } = useUniwind();
@@ -173,4 +173,6 @@ export const ChangePassword = () => {
     </CardUniversal>
   );
 };
+
+export default ChangePassword;
 
