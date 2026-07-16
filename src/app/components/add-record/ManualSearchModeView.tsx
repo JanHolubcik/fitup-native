@@ -1,5 +1,5 @@
 import React from "react";
-import { View, TextInput, ScrollView, ActivityIndicator, Pressable } from "react-native";
+import { View, TextInput, FlatList, ActivityIndicator, Pressable } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { Typography, Skeleton } from "heroui-native";
 import { FoodClass } from "@/types/Types";
@@ -83,63 +83,50 @@ const ManualSearchModeView = ({
         ) : null}
       </View>
 
-      <ScrollView className="flex-1" contentContainerStyle={{ gap: 10, paddingBottom: 12 }}>
-        {showSkeleton ? (
-          Array.from({ length: 3 }).map((_, index) => (
-            <View
-              key={`skeleton-${index}`}
-              className="border border-zinc-100 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950/20 p-3 rounded-2xl flex-row gap-3 items-center"
-            >
-              <Skeleton className="w-16 h-16 rounded-xl bg-default-soft dark:bg-zinc-800" />
-              <View className="flex-1 gap-1.5">
-                <Skeleton className="h-4 w-3/4 rounded-md bg-default-soft dark:bg-zinc-800" />
-                <Skeleton className="h-3 w-1/2 rounded-md bg-default-soft dark:bg-zinc-800" />
-                <View className="flex-row gap-1 mt-0.5">
-                  <Skeleton className="h-4 w-8 rounded-full bg-default-soft dark:bg-zinc-800" />
-                  <Skeleton className="h-4 w-8 rounded-full bg-default-soft dark:bg-zinc-800" />
-                  <Skeleton className="h-4 w-8 rounded-full bg-default-soft dark:bg-zinc-800" />
+      <FlatList
+        data={showSkeleton ? Array.from({ length: 3 }) : (foodOptions || [])}
+        keyExtractor={(item, index) => {
+          if (showSkeleton) return `skeleton-${index}`;
+          return (item as FoodClass).id || (item as FoodClass)._id || `food-${index}`;
+        }}
+        contentContainerStyle={{ gap: 10, paddingBottom: 12 }}
+        renderItem={({ item, index }) => {
+          if (showSkeleton) {
+            return (
+              <View
+                key={`skeleton-${index}`}
+                className="border border-zinc-100 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950/20 p-3 rounded-2xl flex-row gap-3 items-center"
+              >
+                <Skeleton className="w-16 h-16 rounded-xl bg-default-soft dark:bg-zinc-800" />
+                <View className="flex-1 gap-1.5">
+                  <Skeleton className="h-4 w-3/4 rounded-md bg-default-soft dark:bg-zinc-800" />
+                  <Skeleton className="h-3 w-1/2 rounded-md bg-default-soft dark:bg-zinc-800" />
+                  <View className="flex-row gap-1 mt-0.5">
+                    <Skeleton className="h-4 w-8 rounded-full bg-default-soft dark:bg-zinc-800" />
+                    <Skeleton className="h-4 w-8 rounded-full bg-default-soft dark:bg-zinc-800" />
+                    <Skeleton className="h-4 w-8 rounded-full bg-default-soft dark:bg-zinc-800" />
+                  </View>
                 </View>
               </View>
-            </View>
-          ))
-        ) : error ? (
-          <CardError
-            title={t("error.failedToLoad")}
-            description={t("error.failedToLoadDesc")}
-            icon={<Ionicons name="alert-circle" size={32} color="#ef4444" />}
-            refetch={refetch}
-          />
-        ) : debouncedSearchTerm.trim().length > 0 && foodOptions?.length === 0 ? (
-          <View className="p-6 items-center gap-4">
-            <View className="w-12 h-12 bg-zinc-100 dark:bg-zinc-800 rounded-full items-center justify-center">
-              <Ionicons
-                name="search-outline"
-                size={24}
-                color={isDark ? "#a1a1aa" : "#71717a"}
+            );
+          }
+
+          const foodItem = item as FoodClass & { originalName?: string };
+          return (
+            <Pressable
+              key={foodItem.id || foodItem._id || `food-${index}`}
+              onPress={() => handleFoodSelect(foodItem, index)}
+              className="border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 active:bg-zinc-50 dark:active:bg-zinc-800 p-3 rounded-2xl flex-row gap-3 items-center"
+              style={{ borderCurve: "continuous" }}
+            >
+              <ImageFromURL
+                url={foodItem.imgUrl}
+                macroName={foodItem.originalName || foodItem.name}
+                width={64}
+                height={64}
               />
-            </View>
-            <Typography.Paragraph className="text-zinc-500 dark:text-zinc-400 text-xs text-center px-4 leading-4">
-              {t("recordNotFound")}
-            </Typography.Paragraph>
-          </View>
-        ) : foodOptions && foodOptions.length > 0 ? (
-          foodOptions.map((foodItem, index) => {
-            const castedItem = foodItem as FoodClass & { originalName?: string };
-            return (
-              <Pressable
-                key={castedItem.id || castedItem._id || `food-${index}`}
-                onPress={() => handleFoodSelect(castedItem, index)}
-                className="border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 active:bg-zinc-50 dark:active:bg-zinc-800 p-3 rounded-2xl flex-row gap-3 items-center"
-                style={{ borderCurve: "continuous" }}
-              >
-                <ImageFromURL
-                  url={castedItem.imgUrl}
-                  macroName={castedItem.originalName || castedItem.name}
-                  width={64}
-                  height={64}
-                />
-                <View className="flex-1 gap-1">
-                  <Typography.Heading
+              <View className="flex-1 gap-1">
+                <Typography.Heading
                   type="h4"
                   className="text-sm font-bold text-zinc-950 dark:text-white leading-4"
                   numberOfLines={1}
@@ -177,18 +164,48 @@ const ManualSearchModeView = ({
               </View>
             </Pressable>
           );
-        })
-        ) : (
-          <View className="py-8 items-center gap-3">
-            <View className="w-12 h-12 bg-blue-50 dark:bg-blue-950/20 rounded-full items-center justify-center">
-              <Ionicons name="flame-outline" size={24} color="#3b82f6" />
+        }}
+        ListEmptyComponent={() => {
+          if (error) {
+            return (
+              <CardError
+                title={t("error.failedToLoad")}
+                description={t("error.failedToLoadDesc")}
+                icon={<Ionicons name="alert-circle" size={32} color="#ef4444" />}
+                refetch={refetch}
+              />
+            );
+          }
+
+          if (debouncedSearchTerm.trim().length > 0 && foodOptions?.length === 0) {
+            return (
+              <View className="p-6 items-center gap-4">
+                <View className="w-12 h-12 bg-zinc-100 dark:bg-zinc-800 rounded-full items-center justify-center">
+                  <Ionicons
+                    name="search-outline"
+                    size={24}
+                    color={isDark ? "#a1a1aa" : "#71717a"}
+                  />
+                </View>
+                <Typography.Paragraph className="text-zinc-500 dark:text-zinc-400 text-xs text-center px-4 leading-4">
+                  {t("recordNotFound")}
+                </Typography.Paragraph>
+              </View>
+            );
+          }
+
+          return (
+            <View className="py-8 items-center gap-3">
+              <View className="w-12 h-12 bg-blue-50 dark:bg-blue-950/20 rounded-full items-center justify-center">
+                <Ionicons name="flame-outline" size={24} color="#3b82f6" />
+              </View>
+              <Typography.Paragraph className="text-zinc-500 dark:text-zinc-400 text-xs text-center px-6 leading-4 font-semibold">
+                {t("tour.manualSearch.description")}
+              </Typography.Paragraph>
             </View>
-            <Typography.Paragraph className="text-zinc-500 dark:text-zinc-400 text-xs text-center px-6 leading-4 font-semibold">
-              {t("tour.manualSearch.description")}
-            </Typography.Paragraph>
-          </View>
-        )}
-      </ScrollView>
+          );
+        }}
+      />
     </View>
   );
 };
