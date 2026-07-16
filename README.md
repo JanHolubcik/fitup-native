@@ -14,9 +14,8 @@ This is the mobile application version of the **Fitup Calorie & Physical Activit
 TODO: Once they are implemented, they will be checked.
 
 - [x] **Calorie & Macro Logging Dashboard**: Keep track of daily meals classified by category timeframe. Track total protein, carbs, fats, fiber, sugar, and salt against personalized daily targets.
-- [ ] **Gemini AI Integration**:
-  - [ ] **AI Food Intake Analyzer**: Evaluates daily meals to praise healthy habits, issue warnings, and suggest healthier food alternatives (using structured markup).
-  - [ ] **AI Food Image Recognition**: Snap or upload a photo of your meal to have the AI identify the dish and estimate its nutritional macro.
+- [x] **Gemini AI Integration**:
+  - [x] **AI Food Image Recognition**: Snap or upload a photo of your meal to have the AI identify the dish and estimate its nutritional macro.
 - [x] **Hybrid Barcode Scanner**:
   - [x] Supports EAN-13, EAN-8, and UPC-A formats.
   - [x] Queries local database catalog first; if not found, it calls the **Open Food Facts API**, maps nutritional data, seeds it locally, and logs it.
