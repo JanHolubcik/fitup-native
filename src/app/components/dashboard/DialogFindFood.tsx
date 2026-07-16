@@ -8,7 +8,7 @@ import { useRouter } from "expo-router";
 import { useTranslation } from "@/hooks/useTranslation";
 import { useDebounce } from "@/utils/FunctionsHelper";
 import { useUniwind } from "uniwind";
-import { getSearchedFoodOptions } from "@/app/lib/queriesOptions/GetSearchedFoodOptions";
+import { getSearchedFoodOptions } from "@/lib/queriesOptions/GetSearchedFoodOptions";
 import { Food, FoodClass, TimeOfDay } from "@/types/Types";
 import { MACRO_TAILWIND_THEME, MacroType } from "@/utils/MacrosHelper";
 import ImageFromURL from "../common/ImageFromURL";
@@ -38,7 +38,7 @@ const DialogFindFood = ({ isOpen, onOpenChange, timeOfDay = "breakfast" }: Dialo
     onOpenChange(false);
     router.replace({
       pathname: "/(tabs)/add-record",
-      params: { mode: "scanner" }
+      params: { mode: "scanner" },
     });
   };
 
@@ -160,7 +160,7 @@ const DialogFindFood = ({ isOpen, onOpenChange, timeOfDay = "breakfast" }: Dialo
 
             <FlatList
               className="flex-1"
-              data={showSkeleton ? Array.from({ length: 3 }) : (foodOptions || [])}
+              data={showSkeleton ? Array.from({ length: 3 }) : foodOptions || []}
               keyExtractor={(item, index) => {
                 if (showSkeleton) return `skeleton-${index}`;
                 return (item as FoodClass).id || (item as FoodClass)._id || `food-${index}`;

@@ -4,7 +4,7 @@ import { ColorValue, Image, View } from "react-native";
 import { useUniwind } from "uniwind";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useTranslation } from "../../hooks/useTranslation";
-import { authClient } from "../lib/auth-client";
+import { authClient } from "../../lib/auth-client";
 import MaterialTopTabs from "../components/common/MaterialTopTabs";
 
 type IoniconName = ComponentProps<typeof Ionicons>["name"];
@@ -58,12 +58,7 @@ const TabsLayout = () => {
         },
       }}
     >
-      <MaterialTopTabs.Screen
-        name="index"
-        options={{
-          tabBarItemStyle: { display: "none" },
-        }}
-      />
+
       <MaterialTopTabs.Screen
         name="add-record"
         options={{

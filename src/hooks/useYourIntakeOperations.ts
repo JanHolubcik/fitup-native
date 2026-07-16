@@ -4,10 +4,10 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useToast } from "heroui-native";
 
 import { useCurrentDate } from "./useDashboardState";
-import { LastMonthFoodOptions } from "../app/lib/queriesOptions/LastMonthFoodOptions";
-import { SaveFoodOptions } from "../app/lib/queriesOptions/SaveFoodOptions";
+import { LastMonthFoodOptions } from "../lib/queriesOptions/LastMonthFoodOptions";
+import { SaveFoodOptions } from "../lib/queriesOptions/SaveFoodOptions";
 import { Food, FoodType, TimeOfDay } from "../types/Types";
-import { authClient } from "../app/lib/auth-client";
+import { authClient } from "../lib/auth-client";
 import { useTranslation } from "./useTranslation";
 
 const emptyDayFallback: FoodType = {
@@ -37,7 +37,7 @@ const useYourIntakeOperations = () => {
   const toastPromise = useCallback(
     async <T>(
       promise: Promise<T>,
-      messages: { pending: string; success: string; error: string },
+      messages: { pending: string; success: string; error: string }
     ) => {
       try {
         await promise;
@@ -47,7 +47,7 @@ const useYourIntakeOperations = () => {
         toast.show({ label: errMsg, variant: "danger" });
       }
     },
-    [toast],
+    [toast]
   );
 
   const saveFood = useCallback(
@@ -56,9 +56,7 @@ const useYourIntakeOperations = () => {
 
       const food = foodToSave || savedFood;
       const hasAnyFood =
-        food.breakfast.length > 0 ||
-        food.lunch.length > 0 ||
-        food.dinner.length > 0;
+        food.breakfast.length > 0 || food.lunch.length > 0 || food.dinner.length > 0;
 
       if (!hasAnyFood && !isLastItem) return;
 
@@ -73,7 +71,7 @@ const useYourIntakeOperations = () => {
         throw err;
       }
     },
-    [user, savedFood, dateString, saveFoodMutation],
+    [user, savedFood, dateString, saveFoodMutation]
   );
 
   const addToFoodObject = useCallback(
@@ -122,7 +120,7 @@ const useYourIntakeOperations = () => {
         error: t("toast.error"),
       });
     },
-    [savedFood, dateString, dateFrom, dateTo, queryClient, saveFood, t, toastPromise],
+    [savedFood, dateString, dateFrom, dateTo, queryClient, saveFood, t, toastPromise]
   );
 
   const removeFromSavedFood = useCallback(
@@ -158,7 +156,7 @@ const useYourIntakeOperations = () => {
         error: t("toast.error"),
       });
     },
-    [dateString, dateFrom, dateTo, queryClient, savedFood, saveFood, t, toastPromise],
+    [dateString, dateFrom, dateTo, queryClient, savedFood, saveFood, t, toastPromise]
   );
 
   const updateFood = useCallback(
@@ -187,14 +185,14 @@ const useYourIntakeOperations = () => {
         data[dateString] = {
           ...data[dateString],
           [timeOfDay]: data[dateString][timeOfDay].map((f) =>
-            f.id === foodItem.id ? updatedFoodItem : f,
+            f.id === foodItem.id ? updatedFoodItem : f
           ),
         };
         return data;
       });
 
       const updatedTimeOfDayArray = savedFood[timeOfDay].map((f) =>
-        f.id === foodItem.id ? updatedFoodItem : f,
+        f.id === foodItem.id ? updatedFoodItem : f
       );
 
       const fullUpdatedObject = {
@@ -210,7 +208,7 @@ const useYourIntakeOperations = () => {
         error: t("toast.error"),
       });
     },
-    [dateString, dateFrom, dateTo, queryClient, savedFood, saveFood, t, toastPromise],
+    [dateString, dateFrom, dateTo, queryClient, savedFood, saveFood, t, toastPromise]
   );
 
   return {

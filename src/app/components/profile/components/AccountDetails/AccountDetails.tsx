@@ -4,7 +4,7 @@ import { Formik } from "formik";
 import { useTranslation } from "../../../../../hooks/useTranslation";
 import CardUniversal from "../../../common/CardUniversal";
 import useAccountDetails from "./hooks/useAccountDetails";
-import { authClient } from "@/app/lib/auth-client";
+import { authClient } from "@/lib/auth-client";
 import AccountDetailsForm from "./AccountDetailsForm";
 
 type User = typeof authClient.$Infer.Session.user;
@@ -51,4 +51,3 @@ const AccountDetails = ({ user }: AccountDetailsProps) => {
 };
 
 export default AccountDetails;
-

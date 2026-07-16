@@ -10,7 +10,7 @@ type FlagIconProps = {
   height?: number;
 };
 
-export const FlagIcon = ({ code, width = 21, height = 14 }: FlagIconProps) => {
+const FlagIcon = ({ code, width = 21, height = 14 }: FlagIconProps) => {
   switch (code) {
     case "en":
       return <EnglishFlag width={width} height={height} />;
@@ -20,3 +20,5 @@ export const FlagIcon = ({ code, width = 21, height = 14 }: FlagIconProps) => {
       return null;
   }
 };
+
+export default FlagIcon;

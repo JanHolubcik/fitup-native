@@ -2,12 +2,12 @@ import React from "react";
 import { Separator, Typography } from "heroui-native";
 import { Formik } from "formik";
 
-import { authClient } from "@/app/lib/auth-client";
+import { authClient } from "@/lib/auth-client";
 import useBiometricAndGoals from "./hooks/useBiometricAndGoals";
 import BiometricAndGoalsForm from "./BiometricAndGoalsForm";
 import CardUniversal from "@/app/components/common/CardUniversal";
 import { useTranslation } from "react-i18next";
-import { updateUserSchema } from "@/app/lib/validationShemas/userValidationSchema";
+import { updateUserSchema } from "@/lib/validationShemas/userValidationSchema";
 
 type User = typeof authClient.$Infer.Session.user;
 

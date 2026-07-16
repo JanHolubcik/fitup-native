@@ -6,7 +6,7 @@ import { Typography, Card, Button, Skeleton } from "heroui-native";
 import { useTranslation } from "@/hooks/useTranslation";
 import { useDebounce } from "@/utils/FunctionsHelper";
 import { useUniwind } from "uniwind";
-import { getSearchedFoodOptions } from "@/app/lib/queriesOptions/GetSearchedFoodOptions";
+import { getSearchedFoodOptions } from "@/lib/queriesOptions/GetSearchedFoodOptions";
 import CardUniversal from "../common/CardUniversal";
 import { MACRO_TAILWIND_THEME, MacroType } from "@/utils/MacrosHelper";
 import ImageFromURL from "../common/ImageFromURL";
@@ -102,7 +102,7 @@ const FoodSearch = () => {
 
       <FlatList
         className="flex-1"
-        data={showSkeleton ? Array.from({ length: 3 }) : (foodOptions || [])}
+        data={showSkeleton ? Array.from({ length: 3 }) : foodOptions || []}
         keyExtractor={(item, index) => {
           if (showSkeleton) return `skeleton-${index}`;
           return (item as FoodClass).id || (item as FoodClass)._id || `food-${index}`;
@@ -211,7 +211,11 @@ const FoodSearch = () => {
               <CardUniversal className="rounded-2xl">
                 <CardUniversal.Body className="p-6 items-center gap-4">
                   <View className="w-16 h-16 bg-zinc-100 dark:bg-zinc-800 rounded-full items-center justify-center">
-                    <Ionicons name="search-outline" size={28} color={isDark ? "#a1a1aa" : "#71717a"} />
+                    <Ionicons
+                      name="search-outline"
+                      size={28}
+                      color={isDark ? "#a1a1aa" : "#71717a"}
+                    />
                   </View>
                   <Typography.Paragraph className="text-zinc-600 dark:text-zinc-400 text-sm text-center px-4 leading-5">
                     {t("recordNotFound")}
@@ -231,7 +235,10 @@ const FoodSearch = () => {
               <View className="w-16 h-16 bg-blue-50 dark:bg-blue-950/30 rounded-full items-center justify-center">
                 <Ionicons name="flame-outline" size={30} color="#3b82f6" />
               </View>
-              <Typography.Heading type="h4" className="text-zinc-900 dark:text-white font-bold mt-2">
+              <Typography.Heading
+                type="h4"
+                className="text-zinc-900 dark:text-white font-bold mt-2"
+              >
                 {t("tour.manualSearch.title")}
               </Typography.Heading>
               <Typography.Paragraph className="text-zinc-500 dark:text-zinc-400 text-sm text-center px-8 leading-5">

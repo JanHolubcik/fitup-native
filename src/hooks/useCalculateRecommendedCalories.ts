@@ -1,19 +1,22 @@
 import { useMemo } from "react";
 import { calculateActivities, calculateCaloriesSum } from "../utils/FunctionsHelper";
-import { LoggedActivityType, FoodType, ACTIVITY_MULTIPLIERS, GOAL_MULTIPLIERS } from "../types/Types";
-import { authClient } from "../app/lib/auth-client";
+import {
+  LoggedActivityType,
+  FoodType,
+  ACTIVITY_MULTIPLIERS,
+  GOAL_MULTIPLIERS,
+} from "../types/Types";
+import { authClient } from "../lib/auth-client";
 
 const useCalculateRecommendedCalories = (
   savedFood: FoodType | null,
-  savedActivities: LoggedActivityType[],
+  savedActivities: LoggedActivityType[]
 ) => {
   const { data } = authClient.useSession();
   const user = data?.user;
 
-  const activityKey = (user?.activityLevel ||
-    "lightlyActive") as keyof typeof ACTIVITY_MULTIPLIERS;
-  const goalKey = (user?.goal ||
-    "maintainWeight") as keyof typeof GOAL_MULTIPLIERS;
+  const activityKey = (user?.activityLevel || "lightlyActive") as keyof typeof ACTIVITY_MULTIPLIERS;
+  const goalKey = (user?.goal || "maintainWeight") as keyof typeof GOAL_MULTIPLIERS;
 
   const recommendedCaloriesValue = useMemo(() => {
     if (user?.weight && user.height) {
@@ -34,9 +37,7 @@ const useCalculateRecommendedCalories = (
       savedFood.dinner.length === 0
     )
       return 0;
-    return (
-      calculateCaloriesSum(savedFood) - calculateActivities(savedActivities)
-    );
+    return calculateCaloriesSum(savedFood) - calculateActivities(savedActivities);
   }, [savedFood, savedActivities]);
 
   return { recommendedCaloriesValue, caloriesSum };

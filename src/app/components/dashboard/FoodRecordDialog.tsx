@@ -8,8 +8,7 @@ import { Food, TimeOfDay } from "@/types/Types";
 import { useTranslation } from "@/hooks/useTranslation";
 import { MACRO_TAILWIND_THEME, MacroArray } from "@/utils/MacrosHelper";
 import ImageFromURL from "../common/ImageFromURL";
-import { uploadImage } from "@/app/lib/api-client";
-
+import { uploadImage } from "@/lib/api-client";
 
 type FoodRecordDialogProps = {
   isOpen: boolean;
@@ -60,7 +59,10 @@ const FoodRecordDialog = ({
         onOpenChange(false);
       } else {
         let finalImgUrl = food.imgUrl;
-        if (food.imgUrl && (food.imgUrl.startsWith("file://") || food.imgUrl.startsWith("content://"))) {
+        if (
+          food.imgUrl &&
+          (food.imgUrl.startsWith("file://") || food.imgUrl.startsWith("content://"))
+        ) {
           try {
             finalImgUrl = await uploadImage(food.imgUrl);
           } catch (uploadErr) {
@@ -86,7 +88,6 @@ const FoodRecordDialog = ({
       setIsSaving(false);
     }
   };
-
 
   const getMacroLabel = (key: string) => {
     switch (key) {

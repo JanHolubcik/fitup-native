@@ -4,7 +4,7 @@ import { Button, Typography, TextField, Label } from "heroui-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useTranslation } from "../../../hooks/useTranslation";
 import { useUniwind } from "uniwind";
-import { authClient } from "../../lib/auth-client";
+import { authClient } from "../../../lib/auth-client";
 import { router } from "expo-router";
 import { useFormik } from "formik";
 
@@ -83,7 +83,7 @@ const LoginForm = ({ onLoadingChange, disabled }: LoginFormProps) => {
             <Ionicons
               name="mail-outline"
               size={20}
-              color={emailFocused ? "#3b82f6" : (isDark ? "#52525b" : "#a1a1aa")}
+              color={emailFocused ? "#3b82f6" : isDark ? "#52525b" : "#a1a1aa"}
               style={{ marginRight: 10 }}
             />
             <TextInput
@@ -131,7 +131,7 @@ const LoginForm = ({ onLoadingChange, disabled }: LoginFormProps) => {
             <Ionicons
               name="lock-closed-outline"
               size={20}
-              color={passwordFocused ? "#3b82f6" : (isDark ? "#52525b" : "#a1a1aa")}
+              color={passwordFocused ? "#3b82f6" : isDark ? "#52525b" : "#a1a1aa"}
               style={{ marginRight: 10 }}
             />
             <TextInput

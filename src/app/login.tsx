@@ -4,7 +4,7 @@ import { Typography } from "heroui-native";
 import { FontAwesome, Ionicons } from "@expo/vector-icons";
 import { useTranslation } from "../hooks/useTranslation";
 import { useUniwind } from "uniwind";
-import { authClient } from "./lib/auth-client";
+import { authClient } from "../lib/auth-client";
 import Animated, { FadeIn, FadeOut, LinearTransition } from "react-native-reanimated";
 import LoginForm from "./components/auth/LoginForm";
 import RegisterForm from "./components/auth/RegisterForm";

@@ -4,11 +4,11 @@ import { StatusBar } from "expo-status-bar";
 import { HeroUINativeProvider } from "heroui-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { ActivityIndicator, View, Platform } from "react-native";
-import { authClient, getBaseURL } from "./lib/auth-client";
-import { getAuthHeaders } from "./lib/api-client";
+import { authClient, getBaseURL } from "../lib/auth-client";
+import { getAuthHeaders } from "../lib/api-client";
 import { useUniwind } from "uniwind";
 import { QueryClientProvider } from "@tanstack/react-query";
-import { queryClient } from "./lib/query-client";
+import { queryClient } from "../lib/query-client";
 
 import "../global.css";
 import "../i18n/i18n";

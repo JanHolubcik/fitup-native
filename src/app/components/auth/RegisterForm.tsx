@@ -4,10 +4,10 @@ import { Button, Typography, TextField, Label } from "heroui-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useTranslation } from "../../../hooks/useTranslation";
 import { useUniwind } from "uniwind";
-import { authClient } from "../../lib/auth-client";
+import { authClient } from "../../../lib/auth-client";
 import { router } from "expo-router";
 import { useFormik } from "formik";
-import { signupSchema } from "../../lib/validationShemas/signupValidationSchema";
+import { signupSchema } from "../../../lib/validationShemas/signupValidationSchema";
 
 type RegisterFormProps = {
   onLoadingChange: (loading: boolean) => void;

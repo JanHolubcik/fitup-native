@@ -4,7 +4,7 @@ import { Separator, Typography, Switch, Select } from "heroui-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useUniwind, Uniwind } from "uniwind";
 import { useTranslation } from "../../../../hooks/useTranslation";
-import { FlagIcon } from "../../common/FlagIcon";
+import FlagIcon from "../../common/FlagIcon";
 import CardUniversal from "../../common/CardUniversal";
 
 const LanguageAndThemeCard = () => {

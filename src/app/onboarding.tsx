@@ -13,7 +13,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { Formik } from "formik";
 import { useTranslation } from "@/hooks/useTranslation";
 import { useUniwind } from "uniwind";
-import { authClient } from "./lib/auth-client";
+import { authClient } from "../lib/auth-client";
 import { useRouter } from "expo-router";
 import Animated, { FadeIn } from "react-native-reanimated";
 
@@ -115,11 +115,7 @@ const OnboardingScreen = () => {
       behavior={Platform.OS === "ios" ? "padding" : "height"}
       className="flex-grow flex-1 bg-white dark:bg-zinc-950"
     >
-      <Formik
-        initialValues={initialValues}
-        validate={validateForm}
-        onSubmit={handleFormSubmit}
-      >
+      <Formik initialValues={initialValues} validate={validateForm} onSubmit={handleFormSubmit}>
         {({
           values,
           errors,
@@ -186,7 +182,10 @@ const OnboardingScreen = () => {
                       >
                         <Ionicons name="flame" size={32} color="white" />
                       </View>
-                      <Typography.Heading type="h2" className="font-extrabold text-zinc-900 dark:text-white text-center">
+                      <Typography.Heading
+                        type="h2"
+                        className="font-extrabold text-zinc-900 dark:text-white text-center"
+                      >
                         {t("welcome.title")}
                       </Typography.Heading>
                       <Typography.Paragraph className="text-zinc-500 dark:text-zinc-400 text-sm text-center px-4 mt-2 leading-relaxed">
@@ -201,7 +200,10 @@ const OnboardingScreen = () => {
                           <Ionicons name="restaurant-outline" size={24} color="#3b82f6" />
                         </View>
                         <View className="flex-1">
-                          <Typography.Heading type="h4" className="font-bold text-zinc-900 dark:text-white text-sm">
+                          <Typography.Heading
+                            type="h4"
+                            className="font-bold text-zinc-900 dark:text-white text-sm"
+                          >
                             {t("welcome.features.logging.title")}
                           </Typography.Heading>
                           <Typography.Paragraph className="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5 leading-snug">
@@ -216,7 +218,10 @@ const OnboardingScreen = () => {
                           <Ionicons name="barcode-outline" size={24} color="#3b82f6" />
                         </View>
                         <View className="flex-1">
-                          <Typography.Heading type="h4" className="font-bold text-zinc-900 dark:text-white text-sm">
+                          <Typography.Heading
+                            type="h4"
+                            className="font-bold text-zinc-900 dark:text-white text-sm"
+                          >
                             {t("welcome.features.scanner.title")}
                           </Typography.Heading>
                           <Typography.Paragraph className="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5 leading-snug">
@@ -231,7 +236,10 @@ const OnboardingScreen = () => {
                           <Ionicons name="camera-outline" size={24} color="#3b82f6" />
                         </View>
                         <View className="flex-1">
-                          <Typography.Heading type="h4" className="font-bold text-zinc-900 dark:text-white text-sm">
+                          <Typography.Heading
+                            type="h4"
+                            className="font-bold text-zinc-900 dark:text-white text-sm"
+                          >
                             {t("welcome.features.ai.title")}
                           </Typography.Heading>
                           <Typography.Paragraph className="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5 leading-snug">
@@ -246,7 +254,10 @@ const OnboardingScreen = () => {
                 {/* STEP 1: GOAL */}
                 {step === 1 && (
                   <Animated.View entering={FadeIn} className="flex-col gap-6 w-full">
-                    <Typography.Heading type="h2" className="font-extrabold text-zinc-900 dark:text-white text-center mb-2">
+                    <Typography.Heading
+                      type="h2"
+                      className="font-extrabold text-zinc-900 dark:text-white text-center mb-2"
+                    >
                       {t("goal.title")}
                     </Typography.Heading>
 
@@ -261,13 +272,24 @@ const OnboardingScreen = () => {
                         }`}
                         style={{ borderCurve: "continuous" }}
                       >
-                        <View className={`w-12 h-12 rounded-2xl items-center justify-center ${
-                          values.goal === "loseWeight" ? "bg-blue-500/10" : "bg-zinc-50 dark:bg-zinc-850"
-                        }`}>
-                          <Ionicons name="flame-outline" size={24} color={values.goal === "loseWeight" ? "#3b82f6" : "#71717a"} />
+                        <View
+                          className={`w-12 h-12 rounded-2xl items-center justify-center ${
+                            values.goal === "loseWeight"
+                              ? "bg-blue-500/10"
+                              : "bg-zinc-50 dark:bg-zinc-850"
+                          }`}
+                        >
+                          <Ionicons
+                            name="flame-outline"
+                            size={24}
+                            color={values.goal === "loseWeight" ? "#3b82f6" : "#71717a"}
+                          />
                         </View>
                         <View className="flex-1">
-                          <Typography.Heading type="h4" className="font-bold text-zinc-900 dark:text-white text-base">
+                          <Typography.Heading
+                            type="h4"
+                            className="font-bold text-zinc-900 dark:text-white text-base"
+                          >
                             {t("goal.loseFat")}
                           </Typography.Heading>
                         </View>
@@ -283,13 +305,24 @@ const OnboardingScreen = () => {
                         }`}
                         style={{ borderCurve: "continuous" }}
                       >
-                        <View className={`w-12 h-12 rounded-2xl items-center justify-center ${
-                          values.goal === "maintainWeight" ? "bg-blue-500/10" : "bg-zinc-50 dark:bg-zinc-850"
-                        }`}>
-                          <Ionicons name="scale-outline" size={24} color={values.goal === "maintainWeight" ? "#3b82f6" : "#71717a"} />
+                        <View
+                          className={`w-12 h-12 rounded-2xl items-center justify-center ${
+                            values.goal === "maintainWeight"
+                              ? "bg-blue-500/10"
+                              : "bg-zinc-50 dark:bg-zinc-850"
+                          }`}
+                        >
+                          <Ionicons
+                            name="scale-outline"
+                            size={24}
+                            color={values.goal === "maintainWeight" ? "#3b82f6" : "#71717a"}
+                          />
                         </View>
                         <View className="flex-1">
-                          <Typography.Heading type="h4" className="font-bold text-zinc-900 dark:text-white text-base">
+                          <Typography.Heading
+                            type="h4"
+                            className="font-bold text-zinc-900 dark:text-white text-base"
+                          >
                             {t("goal.maintain")}
                           </Typography.Heading>
                         </View>
@@ -305,13 +338,24 @@ const OnboardingScreen = () => {
                         }`}
                         style={{ borderCurve: "continuous" }}
                       >
-                        <View className={`w-12 h-12 rounded-2xl items-center justify-center ${
-                          values.goal === "gainWeight" ? "bg-blue-500/10" : "bg-zinc-50 dark:bg-zinc-850"
-                        }`}>
-                          <Ionicons name="barbell-outline" size={24} color={values.goal === "gainWeight" ? "#3b82f6" : "#71717a"} />
+                        <View
+                          className={`w-12 h-12 rounded-2xl items-center justify-center ${
+                            values.goal === "gainWeight"
+                              ? "bg-blue-500/10"
+                              : "bg-zinc-50 dark:bg-zinc-850"
+                          }`}
+                        >
+                          <Ionicons
+                            name="barbell-outline"
+                            size={24}
+                            color={values.goal === "gainWeight" ? "#3b82f6" : "#71717a"}
+                          />
                         </View>
                         <View className="flex-1">
-                          <Typography.Heading type="h4" className="font-bold text-zinc-900 dark:text-white text-base">
+                          <Typography.Heading
+                            type="h4"
+                            className="font-bold text-zinc-900 dark:text-white text-base"
+                          >
                             {t("goal.buildMuscle")}
                           </Typography.Heading>
                         </View>
@@ -323,7 +367,10 @@ const OnboardingScreen = () => {
                 {/* STEP 2: DETAILS */}
                 {step === 2 && (
                   <Animated.View entering={FadeIn} className="flex-col gap-6 w-full">
-                    <Typography.Heading type="h2" className="font-extrabold text-zinc-900 dark:text-white text-center mb-2">
+                    <Typography.Heading
+                      type="h2"
+                      className="font-extrabold text-zinc-900 dark:text-white text-center mb-2"
+                    >
                       {t("details.title")}
                     </Typography.Heading>
 
@@ -339,8 +386,8 @@ const OnboardingScreen = () => {
                               weightFocused
                                 ? "border-blue-500 bg-white dark:bg-zinc-900"
                                 : errors.weight && touched.weight
-                                ? "border-red-500 bg-white dark:bg-zinc-900"
-                                : "border-zinc-200 dark:border-zinc-800"
+                                  ? "border-red-500 bg-white dark:bg-zinc-900"
+                                  : "border-zinc-200 dark:border-zinc-800"
                             }`}
                             style={{ borderCurve: "continuous" }}
                           >
@@ -375,8 +422,8 @@ const OnboardingScreen = () => {
                               heightFocused
                                 ? "border-blue-500 bg-white dark:bg-zinc-900"
                                 : errors.height && touched.height
-                                ? "border-red-500 bg-white dark:bg-zinc-900"
-                                : "border-zinc-200 dark:border-zinc-800"
+                                  ? "border-red-500 bg-white dark:bg-zinc-900"
+                                  : "border-zinc-200 dark:border-zinc-800"
                             }`}
                             style={{ borderCurve: "continuous" }}
                           >
@@ -399,7 +446,6 @@ const OnboardingScreen = () => {
                           </Typography.Paragraph>
                         )}
                       </View>
-
                     </View>
 
                     {/* Activity Level Selector */}
@@ -408,7 +454,9 @@ const OnboardingScreen = () => {
                         {t("details.activityLevel")}
                       </Label>
 
-                      {(["sedentary", "lightlyActive", "mediumActive", "highlyActive"] as const).map((level) => (
+                      {(
+                        ["sedentary", "lightlyActive", "mediumActive", "highlyActive"] as const
+                      ).map((level) => (
                         <Pressable
                           key={level}
                           onPress={() => setFieldValue("activityLevel", level)}
@@ -419,7 +467,10 @@ const OnboardingScreen = () => {
                           }`}
                           style={{ borderCurve: "continuous" }}
                         >
-                          <Typography.Heading type="h4" className="font-bold text-zinc-900 dark:text-white text-sm">
+                          <Typography.Heading
+                            type="h4"
+                            className="font-bold text-zinc-900 dark:text-white text-sm"
+                          >
                             {t(`details.activity.${level}`)}
                           </Typography.Heading>
                         </Pressable>
@@ -432,7 +483,10 @@ const OnboardingScreen = () => {
                 {step === 3 && (
                   <Animated.View entering={FadeIn} className="flex-col gap-6 w-full">
                     <View className="items-center mb-2">
-                      <Typography.Heading type="h2" className="font-extrabold text-zinc-900 dark:text-white text-center">
+                      <Typography.Heading
+                        type="h2"
+                        className="font-extrabold text-zinc-900 dark:text-white text-center"
+                      >
                         {t("review.title")}
                       </Typography.Heading>
                       <Typography.Paragraph className="text-zinc-500 dark:text-zinc-400 text-sm text-center px-4 mt-2">
@@ -446,7 +500,10 @@ const OnboardingScreen = () => {
                         <Typography.Paragraph className="text-xs font-bold text-zinc-500 dark:text-zinc-450 uppercase tracking-wide">
                           {t("review.goalLabel")}
                         </Typography.Paragraph>
-                        <Typography.Heading type="h4" className="font-extrabold text-zinc-900 dark:text-white text-sm">
+                        <Typography.Heading
+                          type="h4"
+                          className="font-extrabold text-zinc-900 dark:text-white text-sm"
+                        >
                           {goalLabels[values.goal]}
                         </Typography.Heading>
                       </View>
@@ -456,7 +513,10 @@ const OnboardingScreen = () => {
                         <Typography.Paragraph className="text-xs font-bold text-zinc-500 dark:text-zinc-450 uppercase tracking-wide">
                           {t("review.activityLevelLabel")}
                         </Typography.Paragraph>
-                        <Typography.Heading type="h4" className="font-extrabold text-zinc-900 dark:text-white text-sm">
+                        <Typography.Heading
+                          type="h4"
+                          className="font-extrabold text-zinc-900 dark:text-white text-sm"
+                        >
                           {activityLabels[values.activityLevel]}
                         </Typography.Heading>
                       </View>
@@ -466,8 +526,13 @@ const OnboardingScreen = () => {
                         <Typography.Paragraph className="text-xs font-bold text-zinc-500 dark:text-zinc-450 uppercase tracking-wide">
                           {t("review.weightLabel")}
                         </Typography.Paragraph>
-                        <Typography.Heading type="h4" className="font-extrabold text-zinc-900 dark:text-white text-sm">
-                          {values.weight ? `${values.weight} ${t("review.kg")}` : t("review.notSet")}
+                        <Typography.Heading
+                          type="h4"
+                          className="font-extrabold text-zinc-900 dark:text-white text-sm"
+                        >
+                          {values.weight
+                            ? `${values.weight} ${t("review.kg")}`
+                            : t("review.notSet")}
                         </Typography.Heading>
                       </View>
 
@@ -476,8 +541,13 @@ const OnboardingScreen = () => {
                         <Typography.Paragraph className="text-xs font-bold text-zinc-500 dark:text-zinc-450 uppercase tracking-wide">
                           {t("review.heightLabel")}
                         </Typography.Paragraph>
-                        <Typography.Heading type="h4" className="font-extrabold text-zinc-900 dark:text-white text-sm">
-                          {values.height ? `${values.height} ${t("review.cm")}` : t("review.notSet")}
+                        <Typography.Heading
+                          type="h4"
+                          className="font-extrabold text-zinc-900 dark:text-white text-sm"
+                        >
+                          {values.height
+                            ? `${values.height} ${t("review.cm")}`
+                            : t("review.notSet")}
                         </Typography.Heading>
                       </View>
                     </View>
