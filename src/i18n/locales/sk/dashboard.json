@@ -171,6 +171,7 @@
     "carbsShort": "Sach",
     "fatShort": "Tuk",
     "sugarShort": "Cuk",
+    "fiberShort": "Vlák",
     "portion": "Porcia (g)",
     "energy": "Energia"
   },
@@ -265,6 +266,24 @@
     "failedToLoadAll": "Nepodarilo sa načítať záznamy jedla a aktivít.",
     "tryAgain": "Skúsiť znova"
   },
+  "validation": {
+    "nameRequired": "Názov je povinný",
+    "nameMinLength": "Názov jedla musí mať aspoň 2 znaky",
+    "amountRequired": "Množstvo je povinné",
+    "caloriesMin": "Kalórie musia byť aspoň 0",
+    "caloriesGtZero": "Kalórie musia byť väčšie ako 0",
+    "fatMin": "Tuk musí byť aspoň 0",
+    "proteinMin": "Bielkoviny musia byť aspoň 0",
+    "sugarMin": "Cukor musí byť aspoň 0",
+    "carbohydratesMin": "Sacharidy musia byť aspoň 0",
+    "fiberMin": "Vláknina musí byť aspoň 0",
+    "saltMin": "Soľ musí byť aspoň 0",
+    "dateInvalid": "Neplatný formát dátumu",
+    "macroAtLeastOne": "Aspoň jedna živina musí byť väčšia ako nula",
+    "activityRequired": "Názov aktivity je povinný",
+    "durationMin": "Trvanie musí byť aspoň 0",
+    "caloriesBurnedMin": "Spálené kalórie musia byť aspoň 0"
+  },
   "aiFoodScan": {
     "notFood": "Na tomto obrázku nebolo rozpoznané žiadne jedlo. Skúste to znova.",
     "failed": "Počas analýzy obrázka sa vyskytla chyba. Skúste to znova.",
@@ -275,4 +294,3 @@
     "analyzing": "Analyzuje sa pomocou Gemini..."
   }
 }
-

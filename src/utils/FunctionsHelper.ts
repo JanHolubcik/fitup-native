@@ -124,16 +124,13 @@ export const useDebounce = <T>(
 };
 
 export const useIsSm = () => {
-  const [isSm, setIsSm] = useState(() => {
-    if (typeof window !== "undefined") {
-      return window.matchMedia("(min-width: 640px)").matches;
-    }
-    return false;
-  });
+  const [isSm, setIsSm] = useState(false);
 
   useEffect(() => {
-    if (typeof window === "undefined") return;
+    // 640px is Tailwind's standard 'sm' breakpoint
     const media = window.matchMedia("(min-width: 640px)");
+
+    setIsSm(media.matches);
 
     const listener = (e: MediaQueryListEvent) => setIsSm(e.matches);
     media.addEventListener("change", listener);
@@ -145,16 +142,13 @@ export const useIsSm = () => {
 };
 
 export const useIsMd = () => {
-  const [isMd, setIsMd] = useState(() => {
-    if (typeof window !== "undefined") {
-      return window.matchMedia("(min-width: 768px)").matches;
-    }
-    return false;
-  });
+  const [isMd, setIsMd] = useState(false);
 
   useEffect(() => {
-    if (typeof window === "undefined") return;
+    // 768px is Tailwind's standard 'md' breakpoint
     const media = window.matchMedia("(min-width: 768px)");
+
+    setIsMd(media.matches);
 
     const listener = (e: MediaQueryListEvent) => setIsMd(e.matches);
     media.addEventListener("change", listener);

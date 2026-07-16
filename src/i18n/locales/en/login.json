@@ -12,5 +12,9 @@
   "signInWithGitHub": "Continue with GitHub",
   "signInWithDiscord": "Continue with Discord",
   "orText": "or",
-  "byContinuing": "By continuing, you agree to our "
+  "byContinuing": "By continuing, you agree to our ",
+  "termsOfUseLinkText": "Terms of Use",
+  "andText": " and ",
+  "privacyPolicyLinkText": "Privacy Policy",
+  "agreePeriod": "."
 }
