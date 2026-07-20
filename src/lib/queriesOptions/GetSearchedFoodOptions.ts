@@ -1,21 +1,23 @@
 import { FoodClass } from "@/types/Types";
-import { safeFetch } from "./safeFetch";
+import { safeFetch, buildApiUrl } from "./safeFetch";
 
 export const getSearchedFoodOptions = (
   searchTerm: string,
   currentLocale: string,
 ) => ({
   queryKey: ["foodSearch", searchTerm, currentLocale],
-  mutationFn: () =>
-    safeFetch<(FoodClass & { originalName?: string })[]>(
+  mutationFn: () => {
+    const fullUrl = buildApiUrl(
+      `/api/food?searchTerm=${encodeURIComponent(searchTerm)}&currentLocale=${encodeURIComponent(currentLocale)}`
+    );
+    console.log(`[getSearchedFoodOptions] Fetching: ${fullUrl}`);
+    return safeFetch<(FoodClass & { originalName?: string })[]>(
       () =>
-        fetch(
-          `${typeof window === "undefined" ? process.env.NEXTAUTH_URL : ""}/api/food?searchTerm=${searchTerm}&currentLocale=${currentLocale}`,
-          {
-            credentials: "include",
-            method: "GET",
-          },
-        ),
-      "Update failed",
-    ),
+        fetch(fullUrl, {
+          credentials: "include",
+          method: "GET",
+        }),
+      "Food search request failed"
+    );
+  },
 });

@@ -11,7 +11,6 @@ export type RNFormData = FormData & {
   append(name: string, value: string | Blob | { uri: string; name?: string; type?: string }): void;
 };
 
-
 /**
  * Gets authentication headers (Authorization and Cookie) from the authClient.
  */
@@ -80,7 +79,7 @@ export const createAuthenticatedXHR = (method: string, url: string): XMLHttpRequ
 
 /**
  * Uploads a local photo URI to the server.
- * 
+ *
  * @param uri The local filesystem URI of the picture.
  * @returns A Promise resolving to the uploaded image URL.
  */
@@ -98,8 +97,8 @@ export const uploadImage = async (uri: string): Promise<string> => {
       type,
     });
 
-    // We must use XMLHttpRequest (XHR) instead of global fetch because React Native's 
-    // fetch implementation fails to serialize the custom { uri, name, type } object 
+    // We must use XMLHttpRequest (XHR) instead of global fetch because React Native's
+    // fetch implementation fails to serialize the custom { uri, name, type } object
     // structure inside FormData, resulting in "Unsupported FormDataPart implementation".
     const xhr = createAuthenticatedXHR("POST", `${getBaseURL()}/api/upload`);
 

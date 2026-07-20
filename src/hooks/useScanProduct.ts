@@ -9,22 +9,18 @@ export type ScanResponse = FoodClass & {
 const useScanProduct = (onProductNotFound: () => void) => {
   return useMutation<ScanResponse, Error, string>({
     mutationFn: async (qrCode: string): Promise<ScanResponse> => {
-      const response = await fetch(
-        `/api/foodScan?QRCode=${encodeURIComponent(qrCode)}`,
-        { credentials: "include", method: "POST" }
-      );
+      const response = await fetch(`/api/foodScan?QRCode=${encodeURIComponent(qrCode)}`, {
+        credentials: "include",
+        method: "POST",
+      });
 
       if (response.status === 404) {
         return { notFound: true, QRcode: qrCode } as ScanResponse;
       }
 
       if (!response.ok) {
-        const errorData = (await response
-          .json()
-          .catch(() => ({}))) as ApiResponse<never>;
-        throw new Error(
-          errorData.error || `HTTP error! status: ${response.status}`
-        );
+        const errorData = (await response.json().catch(() => ({}))) as ApiResponse<never>;
+        throw new Error(errorData.error || `HTTP error! status: ${response.status}`);
       }
 
       const apiResponse = (await response.json()) as ApiResponse<ScanResponse>;

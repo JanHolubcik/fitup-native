@@ -1,5 +1,5 @@
 import { FoodType } from "@/types/Types";
-import { safeFetch } from "./safeFetch";
+import { safeFetch, buildApiUrl } from "./safeFetch";
 
 export const SaveFoodOptions = () => ({
   mutationFn: ({
@@ -10,10 +10,11 @@ export const SaveFoodOptions = () => ({
     date: string;
     savedFood: FoodType;
     userID: string;
-  }) =>
-    safeFetch<string>(
+  }) => {
+    const fullUrl = buildApiUrl("/api/saveFood");
+    return safeFetch<string>(
       () =>
-        fetch("/api/saveFood", {
+        fetch(fullUrl, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -23,6 +24,7 @@ export const SaveFoodOptions = () => ({
           }),
           credentials: "include",
         }),
-      "Failed to save food",
-    ),
+      "Failed to save food"
+    );
+  },
 });

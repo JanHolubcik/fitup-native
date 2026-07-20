@@ -1,26 +1,18 @@
 import { queryOptions } from "@tanstack/react-query";
 import { LoggedActivityType } from "@/types/Types";
-import { safeFetch } from "./safeFetch";
+import { safeFetch, buildApiUrl } from "./safeFetch";
 
 export const LastMonthSavedActivities = (dateFrom: string, dateTo: string) =>
   queryOptions({
     queryKey: ["lastMonthSavedActivity", dateTo, dateFrom] as const,
     queryFn: () => {
-      let baseUrl = "";
-      if (typeof window === "undefined") {
-        baseUrl =
-          process.env.NEXTAUTH_URL ||
-          (process.env.VERCEL_URL
-            ? `https://${process.env.VERCEL_URL}`
-            : "http://localhost:3000");
-      }
+      const fullUrl = buildApiUrl(
+        `/api/lastMonthSavedActivity?dateFrom=${dateFrom}&dateTo=${dateTo}`
+      );
       return safeFetch<Record<string, LoggedActivityType[]>>(
         () =>
-          fetch(
-            `${baseUrl}/api/lastMonthSavedActivity?dateFrom=${dateFrom}&dateTo=${dateTo}`,
-            { cache: "no-store", credentials: "include" },
-          ),
-        "Failed to fetch last month saved activities",
+          fetch(fullUrl, { cache: "no-store", credentials: "include" }),
+        "Failed to fetch last month saved activities"
       );
     },
     staleTime: 600000,

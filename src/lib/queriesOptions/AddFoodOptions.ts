@@ -1,16 +1,18 @@
 import { FoodInput, FoodClass } from "@/types/Types";
-import { safeFetch } from "./safeFetch";
+import { safeFetch, buildApiUrl } from "./safeFetch";
 
 export const AddFoodOptions = () => ({
-  mutationFn: (foodData: FoodInput) =>
-    safeFetch<FoodClass>(
+  mutationFn: (foodData: FoodInput) => {
+    const fullUrl = buildApiUrl("/api/food");
+    return safeFetch<FoodClass>(
       () =>
-        fetch("/api/food", {
+        fetch(fullUrl, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(foodData),
           credentials: "include",
         }),
-      "Failed to add food to database",
-    ),
+      "Failed to add food to database"
+    );
+  },
 });

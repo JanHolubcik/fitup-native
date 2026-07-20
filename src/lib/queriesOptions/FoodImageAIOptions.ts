@@ -1,17 +1,19 @@
 import { AIFoodAnalysis } from "@/types/Types";
-import { safeFetch } from "./safeFetch";
+import { safeFetch, buildApiUrl } from "./safeFetch";
 
 export const FoodImageAIOptions = (localization: string) => ({
-  mutationFn: (imageBase64: string) =>
-    safeFetch<AIFoodAnalysis>(
+  mutationFn: (imageBase64: string) => {
+    const fullUrl = buildApiUrl("/api/foodImageAI");
+    return safeFetch<AIFoodAnalysis>(
       () =>
-        fetch("/api/foodImageAI", {
+        fetch(fullUrl, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({ imageBase64, localization }),
         }),
-      "Failed to analyze image",
-    ),
+      "Failed to analyze image"
+    );
+  },
 });
