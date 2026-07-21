@@ -1,5 +1,5 @@
 import { LoggedActivityType } from "@/types/Types";
-import { safeFetch, buildApiUrl } from "./safeFetch";
+import { safeFetch } from "./safeFetch";
 
 export const SavedActivitiesOptions = () => ({
   mutationFn: ({
@@ -10,11 +10,10 @@ export const SavedActivitiesOptions = () => ({
     date: string;
     savedActivity: LoggedActivityType[];
     userID: string;
-  }) => {
-    const fullUrl = buildApiUrl("/api/savedActivity");
-    return safeFetch<string>(
+  }) =>
+    safeFetch<string>(
       () =>
-        fetch(fullUrl, {
+        fetch("/api/savedActivity", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -24,7 +23,6 @@ export const SavedActivitiesOptions = () => ({
           }),
           credentials: "include",
         }),
-      "Failed to save activities"
-    );
-  },
+      "Failed to save activities",
+    ),
 });

@@ -10,15 +10,17 @@ export const LastMonthFoodOptions = (dateFrom: string, dateTo: string) =>
       if (typeof window === "undefined") {
         baseUrl =
           process.env.NEXTAUTH_URL ||
-          (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000");
+          (process.env.VERCEL_URL
+            ? `https://${process.env.VERCEL_URL}`
+            : "http://localhost:3000");
       }
       return safeFetch<Record<string, FoodType>>(
         () =>
-          fetch(`${baseUrl}/api/lastMonthFood?dateFrom=${dateFrom}&dateTo=${dateTo}`, {
-            cache: "no-store",
-            credentials: "include",
-          }),
-        "Failed to fetch last month food"
+          fetch(
+            `${baseUrl}/api/lastMonthFood?dateFrom=${dateFrom}&dateTo=${dateTo}`,
+            { cache: "no-store", credentials: "include" },
+          ),
+        "Failed to fetch last month food",
       );
     },
     staleTime: 1000 * 60 * 15,
